@@ -1,0 +1,3590 @@
+Terminals unused in grammar
+
+   FALSE
+   TRUE
+   AND
+   ASSERT
+   ASYNC
+   AWAIT
+   ELSE
+   EXCEPT
+   FINALY
+   IS
+   LAMBDA
+   NOT
+   NONE
+   OR
+   TRY
+   WHILE
+   WITH
+   LBRACKET
+   RBRACKET
+   LBRACE
+   RBRACE
+   SEMICOLON
+   LOWERCASE
+   NUM
+   LETTER
+   KATWPAVLA
+   QUOTE
+   DIGIT
+   SINISON
+   PLINISON
+
+
+State 111 conflicts: 2 shift/reduce
+State 126 conflicts: 2 shift/reduce
+State 127 conflicts: 2 shift/reduce
+State 128 conflicts: 1 shift/reduce
+State 145 conflicts: 1 shift/reduce
+State 148 conflicts: 1 shift/reduce, 37 reduce/reduce
+State 161 conflicts: 2 shift/reduce
+State 162 conflicts: 1 shift/reduce
+State 163 conflicts: 1 shift/reduce
+State 168 conflicts: 1 shift/reduce
+State 202 conflicts: 1 shift/reduce
+State 230 conflicts: 13 shift/reduce
+State 284 conflicts: 2 shift/reduce
+State 293 conflicts: 2 shift/reduce
+State 295 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: programm $end
+
+    1 programm: /* empty */
+    2         | atom programm
+    3         | classi programm
+    4         | function programm
+
+    5 atom: IDENTIFIER
+    6     | literal
+    7     | enclosure
+
+    8 literal: stringliteral
+    9        | INTEGER
+   10        | FLOATNUMBER
+   11        | IMAGINUMBER
+
+   12 stringliteral: stringprefixShort
+   13              | stringprefixLong
+
+   14 stringprefixShort: r SHORTSTRING
+   15                  | u SHORTSTRING
+   16                  | R SHORTSTRING
+   17                  | U SHORTSTRING
+   18                  | f SHORTSTRING
+   19                  | F SHORTSTRING
+   20                  | fr SHORTSTRING
+   21                  | Fr SHORTSTRING
+   22                  | fR SHORTSTRING
+   23                  | FR SHORTSTRING
+   24                  | rf SHORTSTRING
+   25                  | rF SHORTSTRING
+   26                  | Rf SHORTSTRING
+   27                  | RF SHORTSTRING
+
+   28 stringprefixLong: r LONGSTRING
+   29                 | u LONGSTRING
+   30                 | R LONGSTRING
+   31                 | U LONGSTRING
+   32                 | f LONGSTRING
+   33                 | F LONGSTRING
+   34                 | fr LONGSTRING
+   35                 | Fr LONGSTRING
+   36                 | fR LONGSTRING
+   37                 | FR LONGSTRING
+   38                 | rf LONGSTRING
+   39                 | rF LONGSTRING
+   40                 | Rf LONGSTRING
+   41                 | RF LONGSTRING
+
+   42 enclosure: parenth_form
+   43          | list_display
+   44          | set_display
+   45          | dict_display
+
+   46 parenth_form: LEFTBRACKET RIGHTBRACKET
+   47             | LEFTBRACKET IDENTIFIER RIGHTBRACKET
+   48             | LEFTBRACKET comprehension RIGHTBRACKET
+
+   49 list_display: LSQUAREBRACKET RSQUAREBRACKET
+   50             | LSQUAREBRACKET IDENTIFIER RSQUAREBRACKET
+   51             | LSQUAREBRACKET comprehension RSQUAREBRACKET
+
+   52 set_display: CURLLEFT CURLRIGHT
+   53            | CURLLEFT IDENTIFIER CURLRIGHT
+   54            | CURLLEFT comprehension CURLRIGHT
+
+   55 dict_display: IDENTIFIER ISON CURLLEFT CURLRIGHT
+   56             | IDENTIFIER ISON CURLLEFT dictindex CURLRIGHT
+
+   57 dictindex: IDENTIFIER ANWKATWTELEIA IDENTIFIER
+   58          | dictindex KOMMA IDENTIFIER ANWKATWTELEIA IDENTIFIER
+
+   59 comprehension: IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+   60              | IDENTIFIER PLUS IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+   61              | IDENTIFIER MINUS IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+   62              | IDENTIFIER MUL IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+   63              | IDENTIFIER DIVISION IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+   64 simple_statements: statements
+   65                  | simple_statements statements
+   66                  | pass_stm
+   67                  | del_stmt
+   68                  | return_stmt
+   69                  | yield_stmt
+   70                  | raise_stmt
+   71                  | break_stmt
+   72                  | continue_stmt
+   73                  | import_stmt
+   74                  | global_stmt
+   75                  | nonlocal_stmt
+
+   76 statements: expression_statement
+   77           | assignment_statment
+
+   78 expression_statement: PRINT LEFTBRACKET DOUBLEQUOTE protash DOUBLEQUOTE RIGHTBRACKET
+   79                     | PRINT FLOATNUMBER
+
+   80 protash: IDENTIFIER
+   81        | protash IDENTIFIER
+
+   82 assignment_statment: IDENTIFIER ISON FLOATNUMBER
+   83                    | IDENTIFIER ISON IMAGINUMBER
+   84                    | IDENTIFIER ISON INTEGER
+   85                    | IDENTIFIER ISON IDENTIFIER
+   86                    | augmented_assignment_stmt
+
+   87 augmented_assignment_stmt: IDENTIFIER PLUS ISON IDENTIFIER
+   88                          | IDENTIFIER MINUS ISON IDENTIFIER
+
+   89 pass_stm: PASS
+
+   90 del_stmt: DEL IDENTIFIER
+   91         | DEL LEFTBRACKET IDENTIFIER RIGHTBRACKET
+   92         | DEL LSQUAREBRACKET IDENTIFIER RSQUAREBRACKET
+
+   93 return_stmt: RETURN IDENTIFIER
+
+   94 yield_stmt: YIELD IDENTIFIER
+   95           | YIELD FROM IDENTIFIER
+
+   96 raise_stmt: RAISE IDENTIFIER FROM IDENTIFIER
+   97           | RAISE IDENTIFIER LEFTBRACKET DOUBLEQUOTE IDENTIFIER DOUBLEQUOTE RIGHTBRACKET FROM IDENTIFIER
+
+   98 break_stmt: BREAK
+
+   99 continue_stmt: CONTINUE
+
+  100 import_stmt: IMPORT IDENTIFIER
+  101            | IMPORT module
+  102            | FROM module IMPORT IDENTIFIER
+  103            | IMPORT module AS IDENTIFIER
+
+  104 module: IDENTIFIER
+  105       | IDENTIFIER TELEIA IDENTIFIER
+  106       | module TELEIA IDENTIFIER
+
+  107 global_stmt: GLOBAL IDENTIFIER
+  108            | GLOBAL IDENTIFIER synexeia_ekfrashs
+
+  109 synexeia_ekfrashs: KOMMA IDENTIFIER
+  110                  | synexeia_ekfrashs KOMMA IDENTIFIER
+
+  111 nonlocal_stmt: NONLOCAL IDENTIFIER
+  112              | NONLOCAL IDENTIFIER synexeia_ekfrashs
+
+  113 stmt_list: simple_statements
+  114          | stmt_list simple_statements
+
+  115 if_stm: IF IDENTIFIER sygrites IDENTIFIER ANWKATWTELEIA expression_statement
+  116       | IF IDENTIFIER sygrites IDENTIFIER ANWKATWTELEIA expression_statement ELIF IDENTIFIER sygrites IDENTIFIER ANWKATWTELEIA expression_statement
+
+  117 sygrites: ISON ISON
+  118         | MEGALUTERO
+  119         | MIKROTERO
+  120         | DIAFORO
+
+  121 for_stm: FOR IDENTIFIER IN IDENTIFIER ANWKATWTELEIA expression_statement
+  122        | FOR IDENTIFIER IN IDENTIFIER ANWKATWTELEIA if_stm
+
+  123 constructor: defconstructor
+  124            | parameterizedconstructor
+  125            | defconstructor parameterizedconstructor
+  126            | constructor defconstructor
+  127            | constructor parameterizedconstructor
+
+  128 defconstructor: DEF INIT LEFTBRACKET IDENTIFIER RIGHTBRACKET ANWKATWTELEIA swmaconstr
+
+  129 parameterizedconstructor: DEF IDENTIFIER LEFTBRACKET IDENTIFIER RIGHTBRACKET swmaconstr
+  130                         | DEF IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr
+  131                         | DEF IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr object
+  132                         | DEF IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr function
+  133                         | DEF IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr object function
+
+  134 swmaconstr: module ISON DOUBLEQUOTE IDENTIFIER DOUBLEQUOTE
+  135           | module ISON IDENTIFIER
+
+  136 recursive_swmaconstr: swmaconstr
+  137                     | recursive_swmaconstr swmaconstr
+
+  138 object: IDENTIFIER ISON IDENTIFIER LEFTBRACKET IDENTIFIER RIGHTBRACKET
+  139       | IDENTIFIER ISON IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET
+
+  140 function: DEF IDENTIFIER LEFTBRACKET IDENTIFIER RIGHTBRACKET ANWKATWTELEIA stmt_list
+
+  141 classi: CLASS IDENTIFIER ANWKATWTELEIA stmt_list
+  142       | CLASS IDENTIFIER ANWKATWTELEIA constructor
+  143       | CLASS IDENTIFIER ANWKATWTELEIA stmt_list constructor
+  144       | CLASS IDENTIFIER ANWKATWTELEIA constructor stmt_list
+  145       | CLASS IDENTIFIER klhronomikothta ANWKATWTELEIA stmt_list
+  146       | CLASS IDENTIFIER klhronomikothta ANWKATWTELEIA constructor stmt_list
+  147       | CLASS IDENTIFIER ANWKATWTELEIA stmt_list constructor if_stm
+  148       | CLASS IDENTIFIER ANWKATWTELEIA stmt_list constructor if_stm for_stm
+
+  149 klhronomikothta: IDENTIFIER
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+FALSE (258)
+TRUE (259)
+AND (260)
+ASSERT (261)
+ASYNC (262)
+AWAIT (263)
+BREAK (264) 98
+CLASS (265) 141 142 143 144 145 146 147 148
+CONTINUE (266) 99
+DEF (267) 128 129 130 131 132 133 140
+DEL (268) 90 91 92
+ELIF (269) 116
+ELSE (270)
+EXCEPT (271)
+FINALY (272)
+FOR (273) 59 60 61 62 63 121 122
+FROM (274) 95 96 97 102
+GLOBAL (275) 107 108
+IF (276) 115 116
+IMPORT (277) 100 101 102 103
+IN (278) 59 60 61 62 63 121 122
+IS (279)
+LAMBDA (280)
+NONLOCAL (281) 111 112
+NOT (282)
+NONE (283)
+OR (284)
+PASS (285) 89
+RAISE (286) 96 97
+RETURN (287) 93
+TRY (288)
+WHILE (289)
+WITH (290)
+YIELD (291) 94 95
+LBRACKET (292)
+RBRACKET (293)
+LBRACE (294)
+RBRACE (295)
+SEMICOLON (296)
+LOWERCASE (297)
+NUM (298)
+LETTER (299)
+KATWPAVLA (300)
+QUOTE (301)
+DOUBLEQUOTE (302) 78 97 134
+DIGIT (303)
+r (304) 14 28
+u (305) 15 29
+R (306) 16 30
+U (307) 17 31
+f (308) 18 32
+F (309) 19 33
+fr (310) 20 34
+Fr (311) 21 35
+fR (312) 22 36
+FR (313) 23 37
+rf (314) 24 38
+Rf (315) 26 40
+rF (316) 25 39
+RF (317) 27 41
+SHORTSTRING (318) 14 15 16 17 18 19 20 21 22 23 24 25 26 27
+LONGSTRING (319) 28 29 30 31 32 33 34 35 36 37 38 39 40 41
+IDENTIFIER (320) 5 47 50 53 55 56 57 58 59 60 61 62 63 80 81 82 83
+    84 85 87 88 90 91 92 93 94 95 96 97 100 102 103 104 105 106 107
+    108 109 110 111 112 115 116 121 122 128 129 130 131 132 133 134
+    135 138 139 140 141 142 143 144 145 146 147 148 149
+INTEGER (321) 9 84
+FLOATNUMBER (322) 10 79 82
+IMAGINUMBER (323) 11 83
+LEFTBRACKET (324) 46 47 48 78 91 97 128 129 130 131 132 133 138 139
+    140
+RIGHTBRACKET (325) 46 47 48 78 91 97 128 129 130 131 132 133 138 139
+    140
+LSQUAREBRACKET (326) 49 50 51 92
+RSQUAREBRACKET (327) 49 50 51 92
+CURLLEFT (328) 52 53 54 55 56
+CURLRIGHT (329) 52 53 54 55 56
+PLUS (330) 60 87
+MUL (331) 62
+DIVISION (332) 63
+MINUS (333) 61 88
+ISON (334) 55 56 82 83 84 85 87 88 117 134 135 138 139
+KOMMA (335) 58 109 110
+ANWKATWTELEIA (336) 57 58 115 116 121 122 128 130 131 132 133 140 141
+    142 143 144 145 146 147 148
+PRINT (337) 78 79
+SINISON (338)
+PLINISON (339)
+TELEIA (340) 105 106
+AS (341) 103
+INIT (342) 128
+MEGALUTERO (343) 118
+MIKROTERO (344) 119
+DIAFORO (345) 120
+
+
+Nonterminals, with rules where they appear
+
+$accept (91)
+    on left: 0
+programm (92)
+    on left: 1 2 3 4, on right: 0 2 3 4
+atom (93)
+    on left: 5 6 7, on right: 2
+literal (94)
+    on left: 8 9 10 11, on right: 6
+stringliteral (95)
+    on left: 12 13, on right: 8
+stringprefixShort (96)
+    on left: 14 15 16 17 18 19 20 21 22 23 24 25 26 27, on right: 12
+stringprefixLong (97)
+    on left: 28 29 30 31 32 33 34 35 36 37 38 39 40 41, on right: 13
+enclosure (98)
+    on left: 42 43 44 45, on right: 7
+parenth_form (99)
+    on left: 46 47 48, on right: 42
+list_display (100)
+    on left: 49 50 51, on right: 43
+set_display (101)
+    on left: 52 53 54, on right: 44
+dict_display (102)
+    on left: 55 56, on right: 45
+dictindex (103)
+    on left: 57 58, on right: 56 58
+comprehension (104)
+    on left: 59 60 61 62 63, on right: 48 51 54
+simple_statements (105)
+    on left: 64 65 66 67 68 69 70 71 72 73 74 75, on right: 65 113
+    114
+statements (106)
+    on left: 76 77, on right: 64 65
+expression_statement (107)
+    on left: 78 79, on right: 76 115 116 121
+protash (108)
+    on left: 80 81, on right: 78 81
+assignment_statment (109)
+    on left: 82 83 84 85 86, on right: 77
+augmented_assignment_stmt (110)
+    on left: 87 88, on right: 86
+pass_stm (111)
+    on left: 89, on right: 66
+del_stmt (112)
+    on left: 90 91 92, on right: 67
+return_stmt (113)
+    on left: 93, on right: 68
+yield_stmt (114)
+    on left: 94 95, on right: 69
+raise_stmt (115)
+    on left: 96 97, on right: 70
+break_stmt (116)
+    on left: 98, on right: 71
+continue_stmt (117)
+    on left: 99, on right: 72
+import_stmt (118)
+    on left: 100 101 102 103, on right: 73
+module (119)
+    on left: 104 105 106, on right: 101 102 103 106 134 135
+global_stmt (120)
+    on left: 107 108, on right: 74
+synexeia_ekfrashs (121)
+    on left: 109 110, on right: 108 110 112 130 131 132 133 139
+nonlocal_stmt (122)
+    on left: 111 112, on right: 75
+stmt_list (123)
+    on left: 113 114, on right: 114 140 141 143 144 145 146 147 148
+if_stm (124)
+    on left: 115 116, on right: 122 147 148
+sygrites (125)
+    on left: 117 118 119 120, on right: 115 116
+for_stm (126)
+    on left: 121 122, on right: 148
+constructor (127)
+    on left: 123 124 125 126 127, on right: 126 127 142 143 144 146
+    147 148
+defconstructor (128)
+    on left: 128, on right: 123 125 126
+parameterizedconstructor (129)
+    on left: 129 130 131 132 133, on right: 124 125 127
+swmaconstr (130)
+    on left: 134 135, on right: 128 129 136 137
+recursive_swmaconstr (131)
+    on left: 136 137, on right: 130 131 132 133 137
+object (132)
+    on left: 138 139, on right: 131 133
+function (133)
+    on left: 140, on right: 4 132 133
+classi (134)
+    on left: 141 142 143 144 145 146 147 148, on right: 3
+klhronomikothta (135)
+    on left: 149, on right: 145 146
+
+
+State 0
+
+    0 $accept: . programm $end
+
+    CLASS           shift, and go to state 1
+    DEF             shift, and go to state 2
+    r               shift, and go to state 3
+    u               shift, and go to state 4
+    R               shift, and go to state 5
+    U               shift, and go to state 6
+    f               shift, and go to state 7
+    F               shift, and go to state 8
+    fr              shift, and go to state 9
+    Fr              shift, and go to state 10
+    fR              shift, and go to state 11
+    FR              shift, and go to state 12
+    rf              shift, and go to state 13
+    Rf              shift, and go to state 14
+    rF              shift, and go to state 15
+    RF              shift, and go to state 16
+    IDENTIFIER      shift, and go to state 17
+    INTEGER         shift, and go to state 18
+    FLOATNUMBER     shift, and go to state 19
+    IMAGINUMBER     shift, and go to state 20
+    LEFTBRACKET     shift, and go to state 21
+    LSQUAREBRACKET  shift, and go to state 22
+    CURLLEFT        shift, and go to state 23
+
+    $default  reduce using rule 1 (programm)
+
+    programm           go to state 24
+    atom               go to state 25
+    literal            go to state 26
+    stringliteral      go to state 27
+    stringprefixShort  go to state 28
+    stringprefixLong   go to state 29
+    enclosure          go to state 30
+    parenth_form       go to state 31
+    list_display       go to state 32
+    set_display        go to state 33
+    dict_display       go to state 34
+    function           go to state 35
+    classi             go to state 36
+
+
+State 1
+
+  141 classi: CLASS . IDENTIFIER ANWKATWTELEIA stmt_list
+  142       | CLASS . IDENTIFIER ANWKATWTELEIA constructor
+  143       | CLASS . IDENTIFIER ANWKATWTELEIA stmt_list constructor
+  144       | CLASS . IDENTIFIER ANWKATWTELEIA constructor stmt_list
+  145       | CLASS . IDENTIFIER klhronomikothta ANWKATWTELEIA stmt_list
+  146       | CLASS . IDENTIFIER klhronomikothta ANWKATWTELEIA constructor stmt_list
+  147       | CLASS . IDENTIFIER ANWKATWTELEIA stmt_list constructor if_stm
+  148       | CLASS . IDENTIFIER ANWKATWTELEIA stmt_list constructor if_stm for_stm
+
+    IDENTIFIER  shift, and go to state 37
+
+
+State 2
+
+  140 function: DEF . IDENTIFIER LEFTBRACKET IDENTIFIER RIGHTBRACKET ANWKATWTELEIA stmt_list
+
+    IDENTIFIER  shift, and go to state 38
+
+
+State 3
+
+   14 stringprefixShort: r . SHORTSTRING
+   28 stringprefixLong: r . LONGSTRING
+
+    SHORTSTRING  shift, and go to state 39
+    LONGSTRING   shift, and go to state 40
+
+
+State 4
+
+   15 stringprefixShort: u . SHORTSTRING
+   29 stringprefixLong: u . LONGSTRING
+
+    SHORTSTRING  shift, and go to state 41
+    LONGSTRING   shift, and go to state 42
+
+
+State 5
+
+   16 stringprefixShort: R . SHORTSTRING
+   30 stringprefixLong: R . LONGSTRING
+
+    SHORTSTRING  shift, and go to state 43
+    LONGSTRING   shift, and go to state 44
+
+
+State 6
+
+   17 stringprefixShort: U . SHORTSTRING
+   31 stringprefixLong: U . LONGSTRING
+
+    SHORTSTRING  shift, and go to state 45
+    LONGSTRING   shift, and go to state 46
+
+
+State 7
+
+   18 stringprefixShort: f . SHORTSTRING
+   32 stringprefixLong: f . LONGSTRING
+
+    SHORTSTRING  shift, and go to state 47
+    LONGSTRING   shift, and go to state 48
+
+
+State 8
+
+   19 stringprefixShort: F . SHORTSTRING
+   33 stringprefixLong: F . LONGSTRING
+
+    SHORTSTRING  shift, and go to state 49
+    LONGSTRING   shift, and go to state 50
+
+
+State 9
+
+   20 stringprefixShort: fr . SHORTSTRING
+   34 stringprefixLong: fr . LONGSTRING
+
+    SHORTSTRING  shift, and go to state 51
+    LONGSTRING   shift, and go to state 52
+
+
+State 10
+
+   21 stringprefixShort: Fr . SHORTSTRING
+   35 stringprefixLong: Fr . LONGSTRING
+
+    SHORTSTRING  shift, and go to state 53
+    LONGSTRING   shift, and go to state 54
+
+
+State 11
+
+   22 stringprefixShort: fR . SHORTSTRING
+   36 stringprefixLong: fR . LONGSTRING
+
+    SHORTSTRING  shift, and go to state 55
+    LONGSTRING   shift, and go to state 56
+
+
+State 12
+
+   23 stringprefixShort: FR . SHORTSTRING
+   37 stringprefixLong: FR . LONGSTRING
+
+    SHORTSTRING  shift, and go to state 57
+    LONGSTRING   shift, and go to state 58
+
+
+State 13
+
+   24 stringprefixShort: rf . SHORTSTRING
+   38 stringprefixLong: rf . LONGSTRING
+
+    SHORTSTRING  shift, and go to state 59
+    LONGSTRING   shift, and go to state 60
+
+
+State 14
+
+   26 stringprefixShort: Rf . SHORTSTRING
+   40 stringprefixLong: Rf . LONGSTRING
+
+    SHORTSTRING  shift, and go to state 61
+    LONGSTRING   shift, and go to state 62
+
+
+State 15
+
+   25 stringprefixShort: rF . SHORTSTRING
+   39 stringprefixLong: rF . LONGSTRING
+
+    SHORTSTRING  shift, and go to state 63
+    LONGSTRING   shift, and go to state 64
+
+
+State 16
+
+   27 stringprefixShort: RF . SHORTSTRING
+   41 stringprefixLong: RF . LONGSTRING
+
+    SHORTSTRING  shift, and go to state 65
+    LONGSTRING   shift, and go to state 66
+
+
+State 17
+
+    5 atom: IDENTIFIER .
+   55 dict_display: IDENTIFIER . ISON CURLLEFT CURLRIGHT
+   56             | IDENTIFIER . ISON CURLLEFT dictindex CURLRIGHT
+
+    ISON  shift, and go to state 67
+
+    $default  reduce using rule 5 (atom)
+
+
+State 18
+
+    9 literal: INTEGER .
+
+    $default  reduce using rule 9 (literal)
+
+
+State 19
+
+   10 literal: FLOATNUMBER .
+
+    $default  reduce using rule 10 (literal)
+
+
+State 20
+
+   11 literal: IMAGINUMBER .
+
+    $default  reduce using rule 11 (literal)
+
+
+State 21
+
+   46 parenth_form: LEFTBRACKET . RIGHTBRACKET
+   47             | LEFTBRACKET . IDENTIFIER RIGHTBRACKET
+   48             | LEFTBRACKET . comprehension RIGHTBRACKET
+
+    IDENTIFIER    shift, and go to state 68
+    RIGHTBRACKET  shift, and go to state 69
+
+    comprehension  go to state 70
+
+
+State 22
+
+   49 list_display: LSQUAREBRACKET . RSQUAREBRACKET
+   50             | LSQUAREBRACKET . IDENTIFIER RSQUAREBRACKET
+   51             | LSQUAREBRACKET . comprehension RSQUAREBRACKET
+
+    IDENTIFIER      shift, and go to state 71
+    RSQUAREBRACKET  shift, and go to state 72
+
+    comprehension  go to state 73
+
+
+State 23
+
+   52 set_display: CURLLEFT . CURLRIGHT
+   53            | CURLLEFT . IDENTIFIER CURLRIGHT
+   54            | CURLLEFT . comprehension CURLRIGHT
+
+    IDENTIFIER  shift, and go to state 74
+    CURLRIGHT   shift, and go to state 75
+
+    comprehension  go to state 76
+
+
+State 24
+
+    0 $accept: programm . $end
+
+    $end  shift, and go to state 77
+
+
+State 25
+
+    2 programm: atom . programm
+
+    CLASS           shift, and go to state 1
+    DEF             shift, and go to state 2
+    r               shift, and go to state 3
+    u               shift, and go to state 4
+    R               shift, and go to state 5
+    U               shift, and go to state 6
+    f               shift, and go to state 7
+    F               shift, and go to state 8
+    fr              shift, and go to state 9
+    Fr              shift, and go to state 10
+    fR              shift, and go to state 11
+    FR              shift, and go to state 12
+    rf              shift, and go to state 13
+    Rf              shift, and go to state 14
+    rF              shift, and go to state 15
+    RF              shift, and go to state 16
+    IDENTIFIER      shift, and go to state 17
+    INTEGER         shift, and go to state 18
+    FLOATNUMBER     shift, and go to state 19
+    IMAGINUMBER     shift, and go to state 20
+    LEFTBRACKET     shift, and go to state 21
+    LSQUAREBRACKET  shift, and go to state 22
+    CURLLEFT        shift, and go to state 23
+
+    $default  reduce using rule 1 (programm)
+
+    programm           go to state 78
+    atom               go to state 25
+    literal            go to state 26
+    stringliteral      go to state 27
+    stringprefixShort  go to state 28
+    stringprefixLong   go to state 29
+    enclosure          go to state 30
+    parenth_form       go to state 31
+    list_display       go to state 32
+    set_display        go to state 33
+    dict_display       go to state 34
+    function           go to state 35
+    classi             go to state 36
+
+
+State 26
+
+    6 atom: literal .
+
+    $default  reduce using rule 6 (atom)
+
+
+State 27
+
+    8 literal: stringliteral .
+
+    $default  reduce using rule 8 (literal)
+
+
+State 28
+
+   12 stringliteral: stringprefixShort .
+
+    $default  reduce using rule 12 (stringliteral)
+
+
+State 29
+
+   13 stringliteral: stringprefixLong .
+
+    $default  reduce using rule 13 (stringliteral)
+
+
+State 30
+
+    7 atom: enclosure .
+
+    $default  reduce using rule 7 (atom)
+
+
+State 31
+
+   42 enclosure: parenth_form .
+
+    $default  reduce using rule 42 (enclosure)
+
+
+State 32
+
+   43 enclosure: list_display .
+
+    $default  reduce using rule 43 (enclosure)
+
+
+State 33
+
+   44 enclosure: set_display .
+
+    $default  reduce using rule 44 (enclosure)
+
+
+State 34
+
+   45 enclosure: dict_display .
+
+    $default  reduce using rule 45 (enclosure)
+
+
+State 35
+
+    4 programm: function . programm
+
+    CLASS           shift, and go to state 1
+    DEF             shift, and go to state 2
+    r               shift, and go to state 3
+    u               shift, and go to state 4
+    R               shift, and go to state 5
+    U               shift, and go to state 6
+    f               shift, and go to state 7
+    F               shift, and go to state 8
+    fr              shift, and go to state 9
+    Fr              shift, and go to state 10
+    fR              shift, and go to state 11
+    FR              shift, and go to state 12
+    rf              shift, and go to state 13
+    Rf              shift, and go to state 14
+    rF              shift, and go to state 15
+    RF              shift, and go to state 16
+    IDENTIFIER      shift, and go to state 17
+    INTEGER         shift, and go to state 18
+    FLOATNUMBER     shift, and go to state 19
+    IMAGINUMBER     shift, and go to state 20
+    LEFTBRACKET     shift, and go to state 21
+    LSQUAREBRACKET  shift, and go to state 22
+    CURLLEFT        shift, and go to state 23
+
+    $default  reduce using rule 1 (programm)
+
+    programm           go to state 79
+    atom               go to state 25
+    literal            go to state 26
+    stringliteral      go to state 27
+    stringprefixShort  go to state 28
+    stringprefixLong   go to state 29
+    enclosure          go to state 30
+    parenth_form       go to state 31
+    list_display       go to state 32
+    set_display        go to state 33
+    dict_display       go to state 34
+    function           go to state 35
+    classi             go to state 36
+
+
+State 36
+
+    3 programm: classi . programm
+
+    CLASS           shift, and go to state 1
+    DEF             shift, and go to state 2
+    r               shift, and go to state 3
+    u               shift, and go to state 4
+    R               shift, and go to state 5
+    U               shift, and go to state 6
+    f               shift, and go to state 7
+    F               shift, and go to state 8
+    fr              shift, and go to state 9
+    Fr              shift, and go to state 10
+    fR              shift, and go to state 11
+    FR              shift, and go to state 12
+    rf              shift, and go to state 13
+    Rf              shift, and go to state 14
+    rF              shift, and go to state 15
+    RF              shift, and go to state 16
+    IDENTIFIER      shift, and go to state 17
+    INTEGER         shift, and go to state 18
+    FLOATNUMBER     shift, and go to state 19
+    IMAGINUMBER     shift, and go to state 20
+    LEFTBRACKET     shift, and go to state 21
+    LSQUAREBRACKET  shift, and go to state 22
+    CURLLEFT        shift, and go to state 23
+
+    $default  reduce using rule 1 (programm)
+
+    programm           go to state 80
+    atom               go to state 25
+    literal            go to state 26
+    stringliteral      go to state 27
+    stringprefixShort  go to state 28
+    stringprefixLong   go to state 29
+    enclosure          go to state 30
+    parenth_form       go to state 31
+    list_display       go to state 32
+    set_display        go to state 33
+    dict_display       go to state 34
+    function           go to state 35
+    classi             go to state 36
+
+
+State 37
+
+  141 classi: CLASS IDENTIFIER . ANWKATWTELEIA stmt_list
+  142       | CLASS IDENTIFIER . ANWKATWTELEIA constructor
+  143       | CLASS IDENTIFIER . ANWKATWTELEIA stmt_list constructor
+  144       | CLASS IDENTIFIER . ANWKATWTELEIA constructor stmt_list
+  145       | CLASS IDENTIFIER . klhronomikothta ANWKATWTELEIA stmt_list
+  146       | CLASS IDENTIFIER . klhronomikothta ANWKATWTELEIA constructor stmt_list
+  147       | CLASS IDENTIFIER . ANWKATWTELEIA stmt_list constructor if_stm
+  148       | CLASS IDENTIFIER . ANWKATWTELEIA stmt_list constructor if_stm for_stm
+
+    IDENTIFIER     shift, and go to state 81
+    ANWKATWTELEIA  shift, and go to state 82
+
+    klhronomikothta  go to state 83
+
+
+State 38
+
+  140 function: DEF IDENTIFIER . LEFTBRACKET IDENTIFIER RIGHTBRACKET ANWKATWTELEIA stmt_list
+
+    LEFTBRACKET  shift, and go to state 84
+
+
+State 39
+
+   14 stringprefixShort: r SHORTSTRING .
+
+    $default  reduce using rule 14 (stringprefixShort)
+
+
+State 40
+
+   28 stringprefixLong: r LONGSTRING .
+
+    $default  reduce using rule 28 (stringprefixLong)
+
+
+State 41
+
+   15 stringprefixShort: u SHORTSTRING .
+
+    $default  reduce using rule 15 (stringprefixShort)
+
+
+State 42
+
+   29 stringprefixLong: u LONGSTRING .
+
+    $default  reduce using rule 29 (stringprefixLong)
+
+
+State 43
+
+   16 stringprefixShort: R SHORTSTRING .
+
+    $default  reduce using rule 16 (stringprefixShort)
+
+
+State 44
+
+   30 stringprefixLong: R LONGSTRING .
+
+    $default  reduce using rule 30 (stringprefixLong)
+
+
+State 45
+
+   17 stringprefixShort: U SHORTSTRING .
+
+    $default  reduce using rule 17 (stringprefixShort)
+
+
+State 46
+
+   31 stringprefixLong: U LONGSTRING .
+
+    $default  reduce using rule 31 (stringprefixLong)
+
+
+State 47
+
+   18 stringprefixShort: f SHORTSTRING .
+
+    $default  reduce using rule 18 (stringprefixShort)
+
+
+State 48
+
+   32 stringprefixLong: f LONGSTRING .
+
+    $default  reduce using rule 32 (stringprefixLong)
+
+
+State 49
+
+   19 stringprefixShort: F SHORTSTRING .
+
+    $default  reduce using rule 19 (stringprefixShort)
+
+
+State 50
+
+   33 stringprefixLong: F LONGSTRING .
+
+    $default  reduce using rule 33 (stringprefixLong)
+
+
+State 51
+
+   20 stringprefixShort: fr SHORTSTRING .
+
+    $default  reduce using rule 20 (stringprefixShort)
+
+
+State 52
+
+   34 stringprefixLong: fr LONGSTRING .
+
+    $default  reduce using rule 34 (stringprefixLong)
+
+
+State 53
+
+   21 stringprefixShort: Fr SHORTSTRING .
+
+    $default  reduce using rule 21 (stringprefixShort)
+
+
+State 54
+
+   35 stringprefixLong: Fr LONGSTRING .
+
+    $default  reduce using rule 35 (stringprefixLong)
+
+
+State 55
+
+   22 stringprefixShort: fR SHORTSTRING .
+
+    $default  reduce using rule 22 (stringprefixShort)
+
+
+State 56
+
+   36 stringprefixLong: fR LONGSTRING .
+
+    $default  reduce using rule 36 (stringprefixLong)
+
+
+State 57
+
+   23 stringprefixShort: FR SHORTSTRING .
+
+    $default  reduce using rule 23 (stringprefixShort)
+
+
+State 58
+
+   37 stringprefixLong: FR LONGSTRING .
+
+    $default  reduce using rule 37 (stringprefixLong)
+
+
+State 59
+
+   24 stringprefixShort: rf SHORTSTRING .
+
+    $default  reduce using rule 24 (stringprefixShort)
+
+
+State 60
+
+   38 stringprefixLong: rf LONGSTRING .
+
+    $default  reduce using rule 38 (stringprefixLong)
+
+
+State 61
+
+   26 stringprefixShort: Rf SHORTSTRING .
+
+    $default  reduce using rule 26 (stringprefixShort)
+
+
+State 62
+
+   40 stringprefixLong: Rf LONGSTRING .
+
+    $default  reduce using rule 40 (stringprefixLong)
+
+
+State 63
+
+   25 stringprefixShort: rF SHORTSTRING .
+
+    $default  reduce using rule 25 (stringprefixShort)
+
+
+State 64
+
+   39 stringprefixLong: rF LONGSTRING .
+
+    $default  reduce using rule 39 (stringprefixLong)
+
+
+State 65
+
+   27 stringprefixShort: RF SHORTSTRING .
+
+    $default  reduce using rule 27 (stringprefixShort)
+
+
+State 66
+
+   41 stringprefixLong: RF LONGSTRING .
+
+    $default  reduce using rule 41 (stringprefixLong)
+
+
+State 67
+
+   55 dict_display: IDENTIFIER ISON . CURLLEFT CURLRIGHT
+   56             | IDENTIFIER ISON . CURLLEFT dictindex CURLRIGHT
+
+    CURLLEFT  shift, and go to state 85
+
+
+State 68
+
+   47 parenth_form: LEFTBRACKET IDENTIFIER . RIGHTBRACKET
+   59 comprehension: IDENTIFIER . FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+   60              | IDENTIFIER . PLUS IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+   61              | IDENTIFIER . MINUS IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+   62              | IDENTIFIER . MUL IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+   63              | IDENTIFIER . DIVISION IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    FOR           shift, and go to state 86
+    RIGHTBRACKET  shift, and go to state 87
+    PLUS          shift, and go to state 88
+    MUL           shift, and go to state 89
+    DIVISION      shift, and go to state 90
+    MINUS         shift, and go to state 91
+
+
+State 69
+
+   46 parenth_form: LEFTBRACKET RIGHTBRACKET .
+
+    $default  reduce using rule 46 (parenth_form)
+
+
+State 70
+
+   48 parenth_form: LEFTBRACKET comprehension . RIGHTBRACKET
+
+    RIGHTBRACKET  shift, and go to state 92
+
+
+State 71
+
+   50 list_display: LSQUAREBRACKET IDENTIFIER . RSQUAREBRACKET
+   59 comprehension: IDENTIFIER . FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+   60              | IDENTIFIER . PLUS IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+   61              | IDENTIFIER . MINUS IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+   62              | IDENTIFIER . MUL IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+   63              | IDENTIFIER . DIVISION IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    FOR             shift, and go to state 86
+    RSQUAREBRACKET  shift, and go to state 93
+    PLUS            shift, and go to state 88
+    MUL             shift, and go to state 89
+    DIVISION        shift, and go to state 90
+    MINUS           shift, and go to state 91
+
+
+State 72
+
+   49 list_display: LSQUAREBRACKET RSQUAREBRACKET .
+
+    $default  reduce using rule 49 (list_display)
+
+
+State 73
+
+   51 list_display: LSQUAREBRACKET comprehension . RSQUAREBRACKET
+
+    RSQUAREBRACKET  shift, and go to state 94
+
+
+State 74
+
+   53 set_display: CURLLEFT IDENTIFIER . CURLRIGHT
+   59 comprehension: IDENTIFIER . FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+   60              | IDENTIFIER . PLUS IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+   61              | IDENTIFIER . MINUS IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+   62              | IDENTIFIER . MUL IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+   63              | IDENTIFIER . DIVISION IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    FOR        shift, and go to state 86
+    CURLRIGHT  shift, and go to state 95
+    PLUS       shift, and go to state 88
+    MUL        shift, and go to state 89
+    DIVISION   shift, and go to state 90
+    MINUS      shift, and go to state 91
+
+
+State 75
+
+   52 set_display: CURLLEFT CURLRIGHT .
+
+    $default  reduce using rule 52 (set_display)
+
+
+State 76
+
+   54 set_display: CURLLEFT comprehension . CURLRIGHT
+
+    CURLRIGHT  shift, and go to state 96
+
+
+State 77
+
+    0 $accept: programm $end .
+
+    $default  accept
+
+
+State 78
+
+    2 programm: atom programm .
+
+    $default  reduce using rule 2 (programm)
+
+
+State 79
+
+    4 programm: function programm .
+
+    $default  reduce using rule 4 (programm)
+
+
+State 80
+
+    3 programm: classi programm .
+
+    $default  reduce using rule 3 (programm)
+
+
+State 81
+
+  149 klhronomikothta: IDENTIFIER .
+
+    $default  reduce using rule 149 (klhronomikothta)
+
+
+State 82
+
+  141 classi: CLASS IDENTIFIER ANWKATWTELEIA . stmt_list
+  142       | CLASS IDENTIFIER ANWKATWTELEIA . constructor
+  143       | CLASS IDENTIFIER ANWKATWTELEIA . stmt_list constructor
+  144       | CLASS IDENTIFIER ANWKATWTELEIA . constructor stmt_list
+  147       | CLASS IDENTIFIER ANWKATWTELEIA . stmt_list constructor if_stm
+  148       | CLASS IDENTIFIER ANWKATWTELEIA . stmt_list constructor if_stm for_stm
+
+    BREAK       shift, and go to state 97
+    CONTINUE    shift, and go to state 98
+    DEF         shift, and go to state 99
+    DEL         shift, and go to state 100
+    FROM        shift, and go to state 101
+    GLOBAL      shift, and go to state 102
+    IMPORT      shift, and go to state 103
+    NONLOCAL    shift, and go to state 104
+    PASS        shift, and go to state 105
+    RAISE       shift, and go to state 106
+    RETURN      shift, and go to state 107
+    YIELD       shift, and go to state 108
+    IDENTIFIER  shift, and go to state 109
+    PRINT       shift, and go to state 110
+
+    simple_statements          go to state 111
+    statements                 go to state 112
+    expression_statement       go to state 113
+    assignment_statment        go to state 114
+    augmented_assignment_stmt  go to state 115
+    pass_stm                   go to state 116
+    del_stmt                   go to state 117
+    return_stmt                go to state 118
+    yield_stmt                 go to state 119
+    raise_stmt                 go to state 120
+    break_stmt                 go to state 121
+    continue_stmt              go to state 122
+    import_stmt                go to state 123
+    global_stmt                go to state 124
+    nonlocal_stmt              go to state 125
+    stmt_list                  go to state 126
+    constructor                go to state 127
+    defconstructor             go to state 128
+    parameterizedconstructor   go to state 129
+
+
+State 83
+
+  145 classi: CLASS IDENTIFIER klhronomikothta . ANWKATWTELEIA stmt_list
+  146       | CLASS IDENTIFIER klhronomikothta . ANWKATWTELEIA constructor stmt_list
+
+    ANWKATWTELEIA  shift, and go to state 130
+
+
+State 84
+
+  140 function: DEF IDENTIFIER LEFTBRACKET . IDENTIFIER RIGHTBRACKET ANWKATWTELEIA stmt_list
+
+    IDENTIFIER  shift, and go to state 131
+
+
+State 85
+
+   55 dict_display: IDENTIFIER ISON CURLLEFT . CURLRIGHT
+   56             | IDENTIFIER ISON CURLLEFT . dictindex CURLRIGHT
+
+    IDENTIFIER  shift, and go to state 132
+    CURLRIGHT   shift, and go to state 133
+
+    dictindex  go to state 134
+
+
+State 86
+
+   59 comprehension: IDENTIFIER FOR . IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 135
+
+
+State 87
+
+   47 parenth_form: LEFTBRACKET IDENTIFIER RIGHTBRACKET .
+
+    $default  reduce using rule 47 (parenth_form)
+
+
+State 88
+
+   60 comprehension: IDENTIFIER PLUS . IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 136
+
+
+State 89
+
+   62 comprehension: IDENTIFIER MUL . IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 137
+
+
+State 90
+
+   63 comprehension: IDENTIFIER DIVISION . IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 138
+
+
+State 91
+
+   61 comprehension: IDENTIFIER MINUS . IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 139
+
+
+State 92
+
+   48 parenth_form: LEFTBRACKET comprehension RIGHTBRACKET .
+
+    $default  reduce using rule 48 (parenth_form)
+
+
+State 93
+
+   50 list_display: LSQUAREBRACKET IDENTIFIER RSQUAREBRACKET .
+
+    $default  reduce using rule 50 (list_display)
+
+
+State 94
+
+   51 list_display: LSQUAREBRACKET comprehension RSQUAREBRACKET .
+
+    $default  reduce using rule 51 (list_display)
+
+
+State 95
+
+   53 set_display: CURLLEFT IDENTIFIER CURLRIGHT .
+
+    $default  reduce using rule 53 (set_display)
+
+
+State 96
+
+   54 set_display: CURLLEFT comprehension CURLRIGHT .
+
+    $default  reduce using rule 54 (set_display)
+
+
+State 97
+
+   98 break_stmt: BREAK .
+
+    $default  reduce using rule 98 (break_stmt)
+
+
+State 98
+
+   99 continue_stmt: CONTINUE .
+
+    $default  reduce using rule 99 (continue_stmt)
+
+
+State 99
+
+  128 defconstructor: DEF . INIT LEFTBRACKET IDENTIFIER RIGHTBRACKET ANWKATWTELEIA swmaconstr
+  129 parameterizedconstructor: DEF . IDENTIFIER LEFTBRACKET IDENTIFIER RIGHTBRACKET swmaconstr
+  130                         | DEF . IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr
+  131                         | DEF . IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr object
+  132                         | DEF . IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr function
+  133                         | DEF . IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr object function
+
+    IDENTIFIER  shift, and go to state 140
+    INIT        shift, and go to state 141
+
+
+State 100
+
+   90 del_stmt: DEL . IDENTIFIER
+   91         | DEL . LEFTBRACKET IDENTIFIER RIGHTBRACKET
+   92         | DEL . LSQUAREBRACKET IDENTIFIER RSQUAREBRACKET
+
+    IDENTIFIER      shift, and go to state 142
+    LEFTBRACKET     shift, and go to state 143
+    LSQUAREBRACKET  shift, and go to state 144
+
+
+State 101
+
+  102 import_stmt: FROM . module IMPORT IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 145
+
+    module  go to state 146
+
+
+State 102
+
+  107 global_stmt: GLOBAL . IDENTIFIER
+  108            | GLOBAL . IDENTIFIER synexeia_ekfrashs
+
+    IDENTIFIER  shift, and go to state 147
+
+
+State 103
+
+  100 import_stmt: IMPORT . IDENTIFIER
+  101            | IMPORT . module
+  103            | IMPORT . module AS IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 148
+
+    module  go to state 149
+
+
+State 104
+
+  111 nonlocal_stmt: NONLOCAL . IDENTIFIER
+  112              | NONLOCAL . IDENTIFIER synexeia_ekfrashs
+
+    IDENTIFIER  shift, and go to state 150
+
+
+State 105
+
+   89 pass_stm: PASS .
+
+    $default  reduce using rule 89 (pass_stm)
+
+
+State 106
+
+   96 raise_stmt: RAISE . IDENTIFIER FROM IDENTIFIER
+   97           | RAISE . IDENTIFIER LEFTBRACKET DOUBLEQUOTE IDENTIFIER DOUBLEQUOTE RIGHTBRACKET FROM IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 151
+
+
+State 107
+
+   93 return_stmt: RETURN . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 152
+
+
+State 108
+
+   94 yield_stmt: YIELD . IDENTIFIER
+   95           | YIELD . FROM IDENTIFIER
+
+    FROM        shift, and go to state 153
+    IDENTIFIER  shift, and go to state 154
+
+
+State 109
+
+   82 assignment_statment: IDENTIFIER . ISON FLOATNUMBER
+   83                    | IDENTIFIER . ISON IMAGINUMBER
+   84                    | IDENTIFIER . ISON INTEGER
+   85                    | IDENTIFIER . ISON IDENTIFIER
+   87 augmented_assignment_stmt: IDENTIFIER . PLUS ISON IDENTIFIER
+   88                          | IDENTIFIER . MINUS ISON IDENTIFIER
+
+    PLUS   shift, and go to state 155
+    MINUS  shift, and go to state 156
+    ISON   shift, and go to state 157
+
+
+State 110
+
+   78 expression_statement: PRINT . LEFTBRACKET DOUBLEQUOTE protash DOUBLEQUOTE RIGHTBRACKET
+   79                     | PRINT . FLOATNUMBER
+
+    FLOATNUMBER  shift, and go to state 158
+    LEFTBRACKET  shift, and go to state 159
+
+
+State 111
+
+   65 simple_statements: simple_statements . statements
+  113 stmt_list: simple_statements .
+
+    IDENTIFIER  shift, and go to state 109
+    PRINT       shift, and go to state 110
+
+    IDENTIFIER  [reduce using rule 113 (stmt_list)]
+    PRINT       [reduce using rule 113 (stmt_list)]
+    $default    reduce using rule 113 (stmt_list)
+
+    statements                 go to state 160
+    expression_statement       go to state 113
+    assignment_statment        go to state 114
+    augmented_assignment_stmt  go to state 115
+
+
+State 112
+
+   64 simple_statements: statements .
+
+    $default  reduce using rule 64 (simple_statements)
+
+
+State 113
+
+   76 statements: expression_statement .
+
+    $default  reduce using rule 76 (statements)
+
+
+State 114
+
+   77 statements: assignment_statment .
+
+    $default  reduce using rule 77 (statements)
+
+
+State 115
+
+   86 assignment_statment: augmented_assignment_stmt .
+
+    $default  reduce using rule 86 (assignment_statment)
+
+
+State 116
+
+   66 simple_statements: pass_stm .
+
+    $default  reduce using rule 66 (simple_statements)
+
+
+State 117
+
+   67 simple_statements: del_stmt .
+
+    $default  reduce using rule 67 (simple_statements)
+
+
+State 118
+
+   68 simple_statements: return_stmt .
+
+    $default  reduce using rule 68 (simple_statements)
+
+
+State 119
+
+   69 simple_statements: yield_stmt .
+
+    $default  reduce using rule 69 (simple_statements)
+
+
+State 120
+
+   70 simple_statements: raise_stmt .
+
+    $default  reduce using rule 70 (simple_statements)
+
+
+State 121
+
+   71 simple_statements: break_stmt .
+
+    $default  reduce using rule 71 (simple_statements)
+
+
+State 122
+
+   72 simple_statements: continue_stmt .
+
+    $default  reduce using rule 72 (simple_statements)
+
+
+State 123
+
+   73 simple_statements: import_stmt .
+
+    $default  reduce using rule 73 (simple_statements)
+
+
+State 124
+
+   74 simple_statements: global_stmt .
+
+    $default  reduce using rule 74 (simple_statements)
+
+
+State 125
+
+   75 simple_statements: nonlocal_stmt .
+
+    $default  reduce using rule 75 (simple_statements)
+
+
+State 126
+
+  114 stmt_list: stmt_list . simple_statements
+  141 classi: CLASS IDENTIFIER ANWKATWTELEIA stmt_list .
+  143       | CLASS IDENTIFIER ANWKATWTELEIA stmt_list . constructor
+  147       | CLASS IDENTIFIER ANWKATWTELEIA stmt_list . constructor if_stm
+  148       | CLASS IDENTIFIER ANWKATWTELEIA stmt_list . constructor if_stm for_stm
+
+    BREAK       shift, and go to state 97
+    CONTINUE    shift, and go to state 98
+    DEF         shift, and go to state 99
+    DEL         shift, and go to state 100
+    FROM        shift, and go to state 101
+    GLOBAL      shift, and go to state 102
+    IMPORT      shift, and go to state 103
+    NONLOCAL    shift, and go to state 104
+    PASS        shift, and go to state 105
+    RAISE       shift, and go to state 106
+    RETURN      shift, and go to state 107
+    YIELD       shift, and go to state 108
+    IDENTIFIER  shift, and go to state 109
+    PRINT       shift, and go to state 110
+
+    DEF         [reduce using rule 141 (classi)]
+    IDENTIFIER  [reduce using rule 141 (classi)]
+    $default    reduce using rule 141 (classi)
+
+    simple_statements          go to state 161
+    statements                 go to state 112
+    expression_statement       go to state 113
+    assignment_statment        go to state 114
+    augmented_assignment_stmt  go to state 115
+    pass_stm                   go to state 116
+    del_stmt                   go to state 117
+    return_stmt                go to state 118
+    yield_stmt                 go to state 119
+    raise_stmt                 go to state 120
+    break_stmt                 go to state 121
+    continue_stmt              go to state 122
+    import_stmt                go to state 123
+    global_stmt                go to state 124
+    nonlocal_stmt              go to state 125
+    constructor                go to state 162
+    defconstructor             go to state 128
+    parameterizedconstructor   go to state 129
+
+
+State 127
+
+  126 constructor: constructor . defconstructor
+  127            | constructor . parameterizedconstructor
+  142 classi: CLASS IDENTIFIER ANWKATWTELEIA constructor .
+  144       | CLASS IDENTIFIER ANWKATWTELEIA constructor . stmt_list
+
+    BREAK       shift, and go to state 97
+    CONTINUE    shift, and go to state 98
+    DEF         shift, and go to state 99
+    DEL         shift, and go to state 100
+    FROM        shift, and go to state 101
+    GLOBAL      shift, and go to state 102
+    IMPORT      shift, and go to state 103
+    NONLOCAL    shift, and go to state 104
+    PASS        shift, and go to state 105
+    RAISE       shift, and go to state 106
+    RETURN      shift, and go to state 107
+    YIELD       shift, and go to state 108
+    IDENTIFIER  shift, and go to state 109
+    PRINT       shift, and go to state 110
+
+    DEF         [reduce using rule 142 (classi)]
+    IDENTIFIER  [reduce using rule 142 (classi)]
+    $default    reduce using rule 142 (classi)
+
+    simple_statements          go to state 111
+    statements                 go to state 112
+    expression_statement       go to state 113
+    assignment_statment        go to state 114
+    augmented_assignment_stmt  go to state 115
+    pass_stm                   go to state 116
+    del_stmt                   go to state 117
+    return_stmt                go to state 118
+    yield_stmt                 go to state 119
+    raise_stmt                 go to state 120
+    break_stmt                 go to state 121
+    continue_stmt              go to state 122
+    import_stmt                go to state 123
+    global_stmt                go to state 124
+    nonlocal_stmt              go to state 125
+    stmt_list                  go to state 163
+    defconstructor             go to state 164
+    parameterizedconstructor   go to state 165
+
+
+State 128
+
+  123 constructor: defconstructor .
+  125            | defconstructor . parameterizedconstructor
+
+    DEF  shift, and go to state 166
+
+    DEF       [reduce using rule 123 (constructor)]
+    $default  reduce using rule 123 (constructor)
+
+    parameterizedconstructor  go to state 167
+
+
+State 129
+
+  124 constructor: parameterizedconstructor .
+
+    $default  reduce using rule 124 (constructor)
+
+
+State 130
+
+  145 classi: CLASS IDENTIFIER klhronomikothta ANWKATWTELEIA . stmt_list
+  146       | CLASS IDENTIFIER klhronomikothta ANWKATWTELEIA . constructor stmt_list
+
+    BREAK       shift, and go to state 97
+    CONTINUE    shift, and go to state 98
+    DEF         shift, and go to state 99
+    DEL         shift, and go to state 100
+    FROM        shift, and go to state 101
+    GLOBAL      shift, and go to state 102
+    IMPORT      shift, and go to state 103
+    NONLOCAL    shift, and go to state 104
+    PASS        shift, and go to state 105
+    RAISE       shift, and go to state 106
+    RETURN      shift, and go to state 107
+    YIELD       shift, and go to state 108
+    IDENTIFIER  shift, and go to state 109
+    PRINT       shift, and go to state 110
+
+    simple_statements          go to state 111
+    statements                 go to state 112
+    expression_statement       go to state 113
+    assignment_statment        go to state 114
+    augmented_assignment_stmt  go to state 115
+    pass_stm                   go to state 116
+    del_stmt                   go to state 117
+    return_stmt                go to state 118
+    yield_stmt                 go to state 119
+    raise_stmt                 go to state 120
+    break_stmt                 go to state 121
+    continue_stmt              go to state 122
+    import_stmt                go to state 123
+    global_stmt                go to state 124
+    nonlocal_stmt              go to state 125
+    stmt_list                  go to state 168
+    constructor                go to state 169
+    defconstructor             go to state 128
+    parameterizedconstructor   go to state 129
+
+
+State 131
+
+  140 function: DEF IDENTIFIER LEFTBRACKET IDENTIFIER . RIGHTBRACKET ANWKATWTELEIA stmt_list
+
+    RIGHTBRACKET  shift, and go to state 170
+
+
+State 132
+
+   57 dictindex: IDENTIFIER . ANWKATWTELEIA IDENTIFIER
+
+    ANWKATWTELEIA  shift, and go to state 171
+
+
+State 133
+
+   55 dict_display: IDENTIFIER ISON CURLLEFT CURLRIGHT .
+
+    $default  reduce using rule 55 (dict_display)
+
+
+State 134
+
+   56 dict_display: IDENTIFIER ISON CURLLEFT dictindex . CURLRIGHT
+   58 dictindex: dictindex . KOMMA IDENTIFIER ANWKATWTELEIA IDENTIFIER
+
+    CURLRIGHT  shift, and go to state 172
+    KOMMA      shift, and go to state 173
+
+
+State 135
+
+   59 comprehension: IDENTIFIER FOR IDENTIFIER . IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    IN  shift, and go to state 174
+
+
+State 136
+
+   60 comprehension: IDENTIFIER PLUS IDENTIFIER . FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    FOR  shift, and go to state 175
+
+
+State 137
+
+   62 comprehension: IDENTIFIER MUL IDENTIFIER . FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    FOR  shift, and go to state 176
+
+
+State 138
+
+   63 comprehension: IDENTIFIER DIVISION IDENTIFIER . FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    FOR  shift, and go to state 177
+
+
+State 139
+
+   61 comprehension: IDENTIFIER MINUS IDENTIFIER . FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    FOR  shift, and go to state 178
+
+
+State 140
+
+  129 parameterizedconstructor: DEF IDENTIFIER . LEFTBRACKET IDENTIFIER RIGHTBRACKET swmaconstr
+  130                         | DEF IDENTIFIER . LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr
+  131                         | DEF IDENTIFIER . LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr object
+  132                         | DEF IDENTIFIER . LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr function
+  133                         | DEF IDENTIFIER . LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr object function
+
+    LEFTBRACKET  shift, and go to state 179
+
+
+State 141
+
+  128 defconstructor: DEF INIT . LEFTBRACKET IDENTIFIER RIGHTBRACKET ANWKATWTELEIA swmaconstr
+
+    LEFTBRACKET  shift, and go to state 180
+
+
+State 142
+
+   90 del_stmt: DEL IDENTIFIER .
+
+    $default  reduce using rule 90 (del_stmt)
+
+
+State 143
+
+   91 del_stmt: DEL LEFTBRACKET . IDENTIFIER RIGHTBRACKET
+
+    IDENTIFIER  shift, and go to state 181
+
+
+State 144
+
+   92 del_stmt: DEL LSQUAREBRACKET . IDENTIFIER RSQUAREBRACKET
+
+    IDENTIFIER  shift, and go to state 182
+
+
+State 145
+
+  104 module: IDENTIFIER .
+  105       | IDENTIFIER . TELEIA IDENTIFIER
+
+    TELEIA  shift, and go to state 183
+
+    TELEIA    [reduce using rule 104 (module)]
+    $default  reduce using rule 104 (module)
+
+
+State 146
+
+  102 import_stmt: FROM module . IMPORT IDENTIFIER
+  106 module: module . TELEIA IDENTIFIER
+
+    IMPORT  shift, and go to state 184
+    TELEIA  shift, and go to state 185
+
+
+State 147
+
+  107 global_stmt: GLOBAL IDENTIFIER .
+  108            | GLOBAL IDENTIFIER . synexeia_ekfrashs
+
+    KOMMA  shift, and go to state 186
+
+    $default  reduce using rule 107 (global_stmt)
+
+    synexeia_ekfrashs  go to state 187
+
+
+State 148
+
+  100 import_stmt: IMPORT IDENTIFIER .
+  104 module: IDENTIFIER .
+  105       | IDENTIFIER . TELEIA IDENTIFIER
+
+    TELEIA  shift, and go to state 183
+
+    $end            reduce using rule 100 (import_stmt)
+    $end            [reduce using rule 104 (module)]
+    BREAK           reduce using rule 100 (import_stmt)
+    BREAK           [reduce using rule 104 (module)]
+    CLASS           reduce using rule 100 (import_stmt)
+    CLASS           [reduce using rule 104 (module)]
+    CONTINUE        reduce using rule 100 (import_stmt)
+    CONTINUE        [reduce using rule 104 (module)]
+    DEF             reduce using rule 100 (import_stmt)
+    DEF             [reduce using rule 104 (module)]
+    DEL             reduce using rule 100 (import_stmt)
+    DEL             [reduce using rule 104 (module)]
+    FROM            reduce using rule 100 (import_stmt)
+    FROM            [reduce using rule 104 (module)]
+    GLOBAL          reduce using rule 100 (import_stmt)
+    GLOBAL          [reduce using rule 104 (module)]
+    IF              reduce using rule 100 (import_stmt)
+    IF              [reduce using rule 104 (module)]
+    IMPORT          reduce using rule 100 (import_stmt)
+    IMPORT          [reduce using rule 104 (module)]
+    NONLOCAL        reduce using rule 100 (import_stmt)
+    NONLOCAL        [reduce using rule 104 (module)]
+    PASS            reduce using rule 100 (import_stmt)
+    PASS            [reduce using rule 104 (module)]
+    RAISE           reduce using rule 100 (import_stmt)
+    RAISE           [reduce using rule 104 (module)]
+    RETURN          reduce using rule 100 (import_stmt)
+    RETURN          [reduce using rule 104 (module)]
+    YIELD           reduce using rule 100 (import_stmt)
+    YIELD           [reduce using rule 104 (module)]
+    r               reduce using rule 100 (import_stmt)
+    r               [reduce using rule 104 (module)]
+    u               reduce using rule 100 (import_stmt)
+    u               [reduce using rule 104 (module)]
+    R               reduce using rule 100 (import_stmt)
+    R               [reduce using rule 104 (module)]
+    U               reduce using rule 100 (import_stmt)
+    U               [reduce using rule 104 (module)]
+    f               reduce using rule 100 (import_stmt)
+    f               [reduce using rule 104 (module)]
+    F               reduce using rule 100 (import_stmt)
+    F               [reduce using rule 104 (module)]
+    fr              reduce using rule 100 (import_stmt)
+    fr              [reduce using rule 104 (module)]
+    Fr              reduce using rule 100 (import_stmt)
+    Fr              [reduce using rule 104 (module)]
+    fR              reduce using rule 100 (import_stmt)
+    fR              [reduce using rule 104 (module)]
+    FR              reduce using rule 100 (import_stmt)
+    FR              [reduce using rule 104 (module)]
+    rf              reduce using rule 100 (import_stmt)
+    rf              [reduce using rule 104 (module)]
+    Rf              reduce using rule 100 (import_stmt)
+    Rf              [reduce using rule 104 (module)]
+    rF              reduce using rule 100 (import_stmt)
+    rF              [reduce using rule 104 (module)]
+    RF              reduce using rule 100 (import_stmt)
+    RF              [reduce using rule 104 (module)]
+    IDENTIFIER      reduce using rule 100 (import_stmt)
+    IDENTIFIER      [reduce using rule 104 (module)]
+    INTEGER         reduce using rule 100 (import_stmt)
+    INTEGER         [reduce using rule 104 (module)]
+    FLOATNUMBER     reduce using rule 100 (import_stmt)
+    FLOATNUMBER     [reduce using rule 104 (module)]
+    IMAGINUMBER     reduce using rule 100 (import_stmt)
+    IMAGINUMBER     [reduce using rule 104 (module)]
+    LEFTBRACKET     reduce using rule 100 (import_stmt)
+    LEFTBRACKET     [reduce using rule 104 (module)]
+    LSQUAREBRACKET  reduce using rule 100 (import_stmt)
+    LSQUAREBRACKET  [reduce using rule 104 (module)]
+    CURLLEFT        reduce using rule 100 (import_stmt)
+    CURLLEFT        [reduce using rule 104 (module)]
+    PRINT           reduce using rule 100 (import_stmt)
+    PRINT           [reduce using rule 104 (module)]
+    TELEIA          [reduce using rule 104 (module)]
+    AS              reduce using rule 104 (module)
+    $default        reduce using rule 100 (import_stmt)
+
+
+State 149
+
+  101 import_stmt: IMPORT module .
+  103            | IMPORT module . AS IDENTIFIER
+  106 module: module . TELEIA IDENTIFIER
+
+    TELEIA  shift, and go to state 185
+    AS      shift, and go to state 188
+
+    $default  reduce using rule 101 (import_stmt)
+
+
+State 150
+
+  111 nonlocal_stmt: NONLOCAL IDENTIFIER .
+  112              | NONLOCAL IDENTIFIER . synexeia_ekfrashs
+
+    KOMMA  shift, and go to state 186
+
+    $default  reduce using rule 111 (nonlocal_stmt)
+
+    synexeia_ekfrashs  go to state 189
+
+
+State 151
+
+   96 raise_stmt: RAISE IDENTIFIER . FROM IDENTIFIER
+   97           | RAISE IDENTIFIER . LEFTBRACKET DOUBLEQUOTE IDENTIFIER DOUBLEQUOTE RIGHTBRACKET FROM IDENTIFIER
+
+    FROM         shift, and go to state 190
+    LEFTBRACKET  shift, and go to state 191
+
+
+State 152
+
+   93 return_stmt: RETURN IDENTIFIER .
+
+    $default  reduce using rule 93 (return_stmt)
+
+
+State 153
+
+   95 yield_stmt: YIELD FROM . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 192
+
+
+State 154
+
+   94 yield_stmt: YIELD IDENTIFIER .
+
+    $default  reduce using rule 94 (yield_stmt)
+
+
+State 155
+
+   87 augmented_assignment_stmt: IDENTIFIER PLUS . ISON IDENTIFIER
+
+    ISON  shift, and go to state 193
+
+
+State 156
+
+   88 augmented_assignment_stmt: IDENTIFIER MINUS . ISON IDENTIFIER
+
+    ISON  shift, and go to state 194
+
+
+State 157
+
+   82 assignment_statment: IDENTIFIER ISON . FLOATNUMBER
+   83                    | IDENTIFIER ISON . IMAGINUMBER
+   84                    | IDENTIFIER ISON . INTEGER
+   85                    | IDENTIFIER ISON . IDENTIFIER
+
+    IDENTIFIER   shift, and go to state 195
+    INTEGER      shift, and go to state 196
+    FLOATNUMBER  shift, and go to state 197
+    IMAGINUMBER  shift, and go to state 198
+
+
+State 158
+
+   79 expression_statement: PRINT FLOATNUMBER .
+
+    $default  reduce using rule 79 (expression_statement)
+
+
+State 159
+
+   78 expression_statement: PRINT LEFTBRACKET . DOUBLEQUOTE protash DOUBLEQUOTE RIGHTBRACKET
+
+    DOUBLEQUOTE  shift, and go to state 199
+
+
+State 160
+
+   65 simple_statements: simple_statements statements .
+
+    $default  reduce using rule 65 (simple_statements)
+
+
+State 161
+
+   65 simple_statements: simple_statements . statements
+  114 stmt_list: stmt_list simple_statements .
+
+    IDENTIFIER  shift, and go to state 109
+    PRINT       shift, and go to state 110
+
+    IDENTIFIER  [reduce using rule 114 (stmt_list)]
+    PRINT       [reduce using rule 114 (stmt_list)]
+    $default    reduce using rule 114 (stmt_list)
+
+    statements                 go to state 160
+    expression_statement       go to state 113
+    assignment_statment        go to state 114
+    augmented_assignment_stmt  go to state 115
+
+
+State 162
+
+  126 constructor: constructor . defconstructor
+  127            | constructor . parameterizedconstructor
+  143 classi: CLASS IDENTIFIER ANWKATWTELEIA stmt_list constructor .
+  147       | CLASS IDENTIFIER ANWKATWTELEIA stmt_list constructor . if_stm
+  148       | CLASS IDENTIFIER ANWKATWTELEIA stmt_list constructor . if_stm for_stm
+
+    DEF  shift, and go to state 99
+    IF   shift, and go to state 200
+
+    DEF       [reduce using rule 143 (classi)]
+    $default  reduce using rule 143 (classi)
+
+    if_stm                    go to state 201
+    defconstructor            go to state 164
+    parameterizedconstructor  go to state 165
+
+
+State 163
+
+  114 stmt_list: stmt_list . simple_statements
+  144 classi: CLASS IDENTIFIER ANWKATWTELEIA constructor stmt_list .
+
+    BREAK       shift, and go to state 97
+    CONTINUE    shift, and go to state 98
+    DEL         shift, and go to state 100
+    FROM        shift, and go to state 101
+    GLOBAL      shift, and go to state 102
+    IMPORT      shift, and go to state 103
+    NONLOCAL    shift, and go to state 104
+    PASS        shift, and go to state 105
+    RAISE       shift, and go to state 106
+    RETURN      shift, and go to state 107
+    YIELD       shift, and go to state 108
+    IDENTIFIER  shift, and go to state 109
+    PRINT       shift, and go to state 110
+
+    IDENTIFIER  [reduce using rule 144 (classi)]
+    $default    reduce using rule 144 (classi)
+
+    simple_statements          go to state 161
+    statements                 go to state 112
+    expression_statement       go to state 113
+    assignment_statment        go to state 114
+    augmented_assignment_stmt  go to state 115
+    pass_stm                   go to state 116
+    del_stmt                   go to state 117
+    return_stmt                go to state 118
+    yield_stmt                 go to state 119
+    raise_stmt                 go to state 120
+    break_stmt                 go to state 121
+    continue_stmt              go to state 122
+    import_stmt                go to state 123
+    global_stmt                go to state 124
+    nonlocal_stmt              go to state 125
+
+
+State 164
+
+  126 constructor: constructor defconstructor .
+
+    $default  reduce using rule 126 (constructor)
+
+
+State 165
+
+  127 constructor: constructor parameterizedconstructor .
+
+    $default  reduce using rule 127 (constructor)
+
+
+State 166
+
+  129 parameterizedconstructor: DEF . IDENTIFIER LEFTBRACKET IDENTIFIER RIGHTBRACKET swmaconstr
+  130                         | DEF . IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr
+  131                         | DEF . IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr object
+  132                         | DEF . IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr function
+  133                         | DEF . IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr object function
+
+    IDENTIFIER  shift, and go to state 140
+
+
+State 167
+
+  125 constructor: defconstructor parameterizedconstructor .
+
+    $default  reduce using rule 125 (constructor)
+
+
+State 168
+
+  114 stmt_list: stmt_list . simple_statements
+  145 classi: CLASS IDENTIFIER klhronomikothta ANWKATWTELEIA stmt_list .
+
+    BREAK       shift, and go to state 97
+    CONTINUE    shift, and go to state 98
+    DEL         shift, and go to state 100
+    FROM        shift, and go to state 101
+    GLOBAL      shift, and go to state 102
+    IMPORT      shift, and go to state 103
+    NONLOCAL    shift, and go to state 104
+    PASS        shift, and go to state 105
+    RAISE       shift, and go to state 106
+    RETURN      shift, and go to state 107
+    YIELD       shift, and go to state 108
+    IDENTIFIER  shift, and go to state 109
+    PRINT       shift, and go to state 110
+
+    IDENTIFIER  [reduce using rule 145 (classi)]
+    $default    reduce using rule 145 (classi)
+
+    simple_statements          go to state 161
+    statements                 go to state 112
+    expression_statement       go to state 113
+    assignment_statment        go to state 114
+    augmented_assignment_stmt  go to state 115
+    pass_stm                   go to state 116
+    del_stmt                   go to state 117
+    return_stmt                go to state 118
+    yield_stmt                 go to state 119
+    raise_stmt                 go to state 120
+    break_stmt                 go to state 121
+    continue_stmt              go to state 122
+    import_stmt                go to state 123
+    global_stmt                go to state 124
+    nonlocal_stmt              go to state 125
+
+
+State 169
+
+  126 constructor: constructor . defconstructor
+  127            | constructor . parameterizedconstructor
+  146 classi: CLASS IDENTIFIER klhronomikothta ANWKATWTELEIA constructor . stmt_list
+
+    BREAK       shift, and go to state 97
+    CONTINUE    shift, and go to state 98
+    DEF         shift, and go to state 99
+    DEL         shift, and go to state 100
+    FROM        shift, and go to state 101
+    GLOBAL      shift, and go to state 102
+    IMPORT      shift, and go to state 103
+    NONLOCAL    shift, and go to state 104
+    PASS        shift, and go to state 105
+    RAISE       shift, and go to state 106
+    RETURN      shift, and go to state 107
+    YIELD       shift, and go to state 108
+    IDENTIFIER  shift, and go to state 109
+    PRINT       shift, and go to state 110
+
+    simple_statements          go to state 111
+    statements                 go to state 112
+    expression_statement       go to state 113
+    assignment_statment        go to state 114
+    augmented_assignment_stmt  go to state 115
+    pass_stm                   go to state 116
+    del_stmt                   go to state 117
+    return_stmt                go to state 118
+    yield_stmt                 go to state 119
+    raise_stmt                 go to state 120
+    break_stmt                 go to state 121
+    continue_stmt              go to state 122
+    import_stmt                go to state 123
+    global_stmt                go to state 124
+    nonlocal_stmt              go to state 125
+    stmt_list                  go to state 202
+    defconstructor             go to state 164
+    parameterizedconstructor   go to state 165
+
+
+State 170
+
+  140 function: DEF IDENTIFIER LEFTBRACKET IDENTIFIER RIGHTBRACKET . ANWKATWTELEIA stmt_list
+
+    ANWKATWTELEIA  shift, and go to state 203
+
+
+State 171
+
+   57 dictindex: IDENTIFIER ANWKATWTELEIA . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 204
+
+
+State 172
+
+   56 dict_display: IDENTIFIER ISON CURLLEFT dictindex CURLRIGHT .
+
+    $default  reduce using rule 56 (dict_display)
+
+
+State 173
+
+   58 dictindex: dictindex KOMMA . IDENTIFIER ANWKATWTELEIA IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 205
+
+
+State 174
+
+   59 comprehension: IDENTIFIER FOR IDENTIFIER IN . IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 206
+
+
+State 175
+
+   60 comprehension: IDENTIFIER PLUS IDENTIFIER FOR . IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 207
+
+
+State 176
+
+   62 comprehension: IDENTIFIER MUL IDENTIFIER FOR . IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 208
+
+
+State 177
+
+   63 comprehension: IDENTIFIER DIVISION IDENTIFIER FOR . IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 209
+
+
+State 178
+
+   61 comprehension: IDENTIFIER MINUS IDENTIFIER FOR . IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 210
+
+
+State 179
+
+  129 parameterizedconstructor: DEF IDENTIFIER LEFTBRACKET . IDENTIFIER RIGHTBRACKET swmaconstr
+  130                         | DEF IDENTIFIER LEFTBRACKET . IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr
+  131                         | DEF IDENTIFIER LEFTBRACKET . IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr object
+  132                         | DEF IDENTIFIER LEFTBRACKET . IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr function
+  133                         | DEF IDENTIFIER LEFTBRACKET . IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr object function
+
+    IDENTIFIER  shift, and go to state 211
+
+
+State 180
+
+  128 defconstructor: DEF INIT LEFTBRACKET . IDENTIFIER RIGHTBRACKET ANWKATWTELEIA swmaconstr
+
+    IDENTIFIER  shift, and go to state 212
+
+
+State 181
+
+   91 del_stmt: DEL LEFTBRACKET IDENTIFIER . RIGHTBRACKET
+
+    RIGHTBRACKET  shift, and go to state 213
+
+
+State 182
+
+   92 del_stmt: DEL LSQUAREBRACKET IDENTIFIER . RSQUAREBRACKET
+
+    RSQUAREBRACKET  shift, and go to state 214
+
+
+State 183
+
+  105 module: IDENTIFIER TELEIA . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 215
+
+
+State 184
+
+  102 import_stmt: FROM module IMPORT . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 216
+
+
+State 185
+
+  106 module: module TELEIA . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 217
+
+
+State 186
+
+  109 synexeia_ekfrashs: KOMMA . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 218
+
+
+State 187
+
+  108 global_stmt: GLOBAL IDENTIFIER synexeia_ekfrashs .
+  110 synexeia_ekfrashs: synexeia_ekfrashs . KOMMA IDENTIFIER
+
+    KOMMA  shift, and go to state 219
+
+    $default  reduce using rule 108 (global_stmt)
+
+
+State 188
+
+  103 import_stmt: IMPORT module AS . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 220
+
+
+State 189
+
+  110 synexeia_ekfrashs: synexeia_ekfrashs . KOMMA IDENTIFIER
+  112 nonlocal_stmt: NONLOCAL IDENTIFIER synexeia_ekfrashs .
+
+    KOMMA  shift, and go to state 219
+
+    $default  reduce using rule 112 (nonlocal_stmt)
+
+
+State 190
+
+   96 raise_stmt: RAISE IDENTIFIER FROM . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 221
+
+
+State 191
+
+   97 raise_stmt: RAISE IDENTIFIER LEFTBRACKET . DOUBLEQUOTE IDENTIFIER DOUBLEQUOTE RIGHTBRACKET FROM IDENTIFIER
+
+    DOUBLEQUOTE  shift, and go to state 222
+
+
+State 192
+
+   95 yield_stmt: YIELD FROM IDENTIFIER .
+
+    $default  reduce using rule 95 (yield_stmt)
+
+
+State 193
+
+   87 augmented_assignment_stmt: IDENTIFIER PLUS ISON . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 223
+
+
+State 194
+
+   88 augmented_assignment_stmt: IDENTIFIER MINUS ISON . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 224
+
+
+State 195
+
+   85 assignment_statment: IDENTIFIER ISON IDENTIFIER .
+
+    $default  reduce using rule 85 (assignment_statment)
+
+
+State 196
+
+   84 assignment_statment: IDENTIFIER ISON INTEGER .
+
+    $default  reduce using rule 84 (assignment_statment)
+
+
+State 197
+
+   82 assignment_statment: IDENTIFIER ISON FLOATNUMBER .
+
+    $default  reduce using rule 82 (assignment_statment)
+
+
+State 198
+
+   83 assignment_statment: IDENTIFIER ISON IMAGINUMBER .
+
+    $default  reduce using rule 83 (assignment_statment)
+
+
+State 199
+
+   78 expression_statement: PRINT LEFTBRACKET DOUBLEQUOTE . protash DOUBLEQUOTE RIGHTBRACKET
+
+    IDENTIFIER  shift, and go to state 225
+
+    protash  go to state 226
+
+
+State 200
+
+  115 if_stm: IF . IDENTIFIER sygrites IDENTIFIER ANWKATWTELEIA expression_statement
+  116       | IF . IDENTIFIER sygrites IDENTIFIER ANWKATWTELEIA expression_statement ELIF IDENTIFIER sygrites IDENTIFIER ANWKATWTELEIA expression_statement
+
+    IDENTIFIER  shift, and go to state 227
+
+
+State 201
+
+  147 classi: CLASS IDENTIFIER ANWKATWTELEIA stmt_list constructor if_stm .
+  148       | CLASS IDENTIFIER ANWKATWTELEIA stmt_list constructor if_stm . for_stm
+
+    FOR  shift, and go to state 228
+
+    $default  reduce using rule 147 (classi)
+
+    for_stm  go to state 229
+
+
+State 202
+
+  114 stmt_list: stmt_list . simple_statements
+  146 classi: CLASS IDENTIFIER klhronomikothta ANWKATWTELEIA constructor stmt_list .
+
+    BREAK       shift, and go to state 97
+    CONTINUE    shift, and go to state 98
+    DEL         shift, and go to state 100
+    FROM        shift, and go to state 101
+    GLOBAL      shift, and go to state 102
+    IMPORT      shift, and go to state 103
+    NONLOCAL    shift, and go to state 104
+    PASS        shift, and go to state 105
+    RAISE       shift, and go to state 106
+    RETURN      shift, and go to state 107
+    YIELD       shift, and go to state 108
+    IDENTIFIER  shift, and go to state 109
+    PRINT       shift, and go to state 110
+
+    IDENTIFIER  [reduce using rule 146 (classi)]
+    $default    reduce using rule 146 (classi)
+
+    simple_statements          go to state 161
+    statements                 go to state 112
+    expression_statement       go to state 113
+    assignment_statment        go to state 114
+    augmented_assignment_stmt  go to state 115
+    pass_stm                   go to state 116
+    del_stmt                   go to state 117
+    return_stmt                go to state 118
+    yield_stmt                 go to state 119
+    raise_stmt                 go to state 120
+    break_stmt                 go to state 121
+    continue_stmt              go to state 122
+    import_stmt                go to state 123
+    global_stmt                go to state 124
+    nonlocal_stmt              go to state 125
+
+
+State 203
+
+  140 function: DEF IDENTIFIER LEFTBRACKET IDENTIFIER RIGHTBRACKET ANWKATWTELEIA . stmt_list
+
+    BREAK       shift, and go to state 97
+    CONTINUE    shift, and go to state 98
+    DEL         shift, and go to state 100
+    FROM        shift, and go to state 101
+    GLOBAL      shift, and go to state 102
+    IMPORT      shift, and go to state 103
+    NONLOCAL    shift, and go to state 104
+    PASS        shift, and go to state 105
+    RAISE       shift, and go to state 106
+    RETURN      shift, and go to state 107
+    YIELD       shift, and go to state 108
+    IDENTIFIER  shift, and go to state 109
+    PRINT       shift, and go to state 110
+
+    simple_statements          go to state 111
+    statements                 go to state 112
+    expression_statement       go to state 113
+    assignment_statment        go to state 114
+    augmented_assignment_stmt  go to state 115
+    pass_stm                   go to state 116
+    del_stmt                   go to state 117
+    return_stmt                go to state 118
+    yield_stmt                 go to state 119
+    raise_stmt                 go to state 120
+    break_stmt                 go to state 121
+    continue_stmt              go to state 122
+    import_stmt                go to state 123
+    global_stmt                go to state 124
+    nonlocal_stmt              go to state 125
+    stmt_list                  go to state 230
+
+
+State 204
+
+   57 dictindex: IDENTIFIER ANWKATWTELEIA IDENTIFIER .
+
+    $default  reduce using rule 57 (dictindex)
+
+
+State 205
+
+   58 dictindex: dictindex KOMMA IDENTIFIER . ANWKATWTELEIA IDENTIFIER
+
+    ANWKATWTELEIA  shift, and go to state 231
+
+
+State 206
+
+   59 comprehension: IDENTIFIER FOR IDENTIFIER IN IDENTIFIER . FOR IDENTIFIER IN IDENTIFIER
+
+    FOR  shift, and go to state 232
+
+
+State 207
+
+   60 comprehension: IDENTIFIER PLUS IDENTIFIER FOR IDENTIFIER . IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    IN  shift, and go to state 233
+
+
+State 208
+
+   62 comprehension: IDENTIFIER MUL IDENTIFIER FOR IDENTIFIER . IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    IN  shift, and go to state 234
+
+
+State 209
+
+   63 comprehension: IDENTIFIER DIVISION IDENTIFIER FOR IDENTIFIER . IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    IN  shift, and go to state 235
+
+
+State 210
+
+   61 comprehension: IDENTIFIER MINUS IDENTIFIER FOR IDENTIFIER . IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    IN  shift, and go to state 236
+
+
+State 211
+
+  129 parameterizedconstructor: DEF IDENTIFIER LEFTBRACKET IDENTIFIER . RIGHTBRACKET swmaconstr
+  130                         | DEF IDENTIFIER LEFTBRACKET IDENTIFIER . synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr
+  131                         | DEF IDENTIFIER LEFTBRACKET IDENTIFIER . synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr object
+  132                         | DEF IDENTIFIER LEFTBRACKET IDENTIFIER . synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr function
+  133                         | DEF IDENTIFIER LEFTBRACKET IDENTIFIER . synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr object function
+
+    RIGHTBRACKET  shift, and go to state 237
+    KOMMA         shift, and go to state 186
+
+    synexeia_ekfrashs  go to state 238
+
+
+State 212
+
+  128 defconstructor: DEF INIT LEFTBRACKET IDENTIFIER . RIGHTBRACKET ANWKATWTELEIA swmaconstr
+
+    RIGHTBRACKET  shift, and go to state 239
+
+
+State 213
+
+   91 del_stmt: DEL LEFTBRACKET IDENTIFIER RIGHTBRACKET .
+
+    $default  reduce using rule 91 (del_stmt)
+
+
+State 214
+
+   92 del_stmt: DEL LSQUAREBRACKET IDENTIFIER RSQUAREBRACKET .
+
+    $default  reduce using rule 92 (del_stmt)
+
+
+State 215
+
+  105 module: IDENTIFIER TELEIA IDENTIFIER .
+
+    $default  reduce using rule 105 (module)
+
+
+State 216
+
+  102 import_stmt: FROM module IMPORT IDENTIFIER .
+
+    $default  reduce using rule 102 (import_stmt)
+
+
+State 217
+
+  106 module: module TELEIA IDENTIFIER .
+
+    $default  reduce using rule 106 (module)
+
+
+State 218
+
+  109 synexeia_ekfrashs: KOMMA IDENTIFIER .
+
+    $default  reduce using rule 109 (synexeia_ekfrashs)
+
+
+State 219
+
+  110 synexeia_ekfrashs: synexeia_ekfrashs KOMMA . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 240
+
+
+State 220
+
+  103 import_stmt: IMPORT module AS IDENTIFIER .
+
+    $default  reduce using rule 103 (import_stmt)
+
+
+State 221
+
+   96 raise_stmt: RAISE IDENTIFIER FROM IDENTIFIER .
+
+    $default  reduce using rule 96 (raise_stmt)
+
+
+State 222
+
+   97 raise_stmt: RAISE IDENTIFIER LEFTBRACKET DOUBLEQUOTE . IDENTIFIER DOUBLEQUOTE RIGHTBRACKET FROM IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 241
+
+
+State 223
+
+   87 augmented_assignment_stmt: IDENTIFIER PLUS ISON IDENTIFIER .
+
+    $default  reduce using rule 87 (augmented_assignment_stmt)
+
+
+State 224
+
+   88 augmented_assignment_stmt: IDENTIFIER MINUS ISON IDENTIFIER .
+
+    $default  reduce using rule 88 (augmented_assignment_stmt)
+
+
+State 225
+
+   80 protash: IDENTIFIER .
+
+    $default  reduce using rule 80 (protash)
+
+
+State 226
+
+   78 expression_statement: PRINT LEFTBRACKET DOUBLEQUOTE protash . DOUBLEQUOTE RIGHTBRACKET
+   81 protash: protash . IDENTIFIER
+
+    DOUBLEQUOTE  shift, and go to state 242
+    IDENTIFIER   shift, and go to state 243
+
+
+State 227
+
+  115 if_stm: IF IDENTIFIER . sygrites IDENTIFIER ANWKATWTELEIA expression_statement
+  116       | IF IDENTIFIER . sygrites IDENTIFIER ANWKATWTELEIA expression_statement ELIF IDENTIFIER sygrites IDENTIFIER ANWKATWTELEIA expression_statement
+
+    ISON        shift, and go to state 244
+    MEGALUTERO  shift, and go to state 245
+    MIKROTERO   shift, and go to state 246
+    DIAFORO     shift, and go to state 247
+
+    sygrites  go to state 248
+
+
+State 228
+
+  121 for_stm: FOR . IDENTIFIER IN IDENTIFIER ANWKATWTELEIA expression_statement
+  122        | FOR . IDENTIFIER IN IDENTIFIER ANWKATWTELEIA if_stm
+
+    IDENTIFIER  shift, and go to state 249
+
+
+State 229
+
+  148 classi: CLASS IDENTIFIER ANWKATWTELEIA stmt_list constructor if_stm for_stm .
+
+    $default  reduce using rule 148 (classi)
+
+
+State 230
+
+  114 stmt_list: stmt_list . simple_statements
+  140 function: DEF IDENTIFIER LEFTBRACKET IDENTIFIER RIGHTBRACKET ANWKATWTELEIA stmt_list .
+
+    BREAK       shift, and go to state 97
+    CONTINUE    shift, and go to state 98
+    DEL         shift, and go to state 100
+    FROM        shift, and go to state 101
+    GLOBAL      shift, and go to state 102
+    IMPORT      shift, and go to state 103
+    NONLOCAL    shift, and go to state 104
+    PASS        shift, and go to state 105
+    RAISE       shift, and go to state 106
+    RETURN      shift, and go to state 107
+    YIELD       shift, and go to state 108
+    IDENTIFIER  shift, and go to state 109
+    PRINT       shift, and go to state 110
+
+    BREAK       [reduce using rule 140 (function)]
+    CONTINUE    [reduce using rule 140 (function)]
+    DEL         [reduce using rule 140 (function)]
+    FROM        [reduce using rule 140 (function)]
+    GLOBAL      [reduce using rule 140 (function)]
+    IMPORT      [reduce using rule 140 (function)]
+    NONLOCAL    [reduce using rule 140 (function)]
+    PASS        [reduce using rule 140 (function)]
+    RAISE       [reduce using rule 140 (function)]
+    RETURN      [reduce using rule 140 (function)]
+    YIELD       [reduce using rule 140 (function)]
+    IDENTIFIER  [reduce using rule 140 (function)]
+    PRINT       [reduce using rule 140 (function)]
+    $default    reduce using rule 140 (function)
+
+    simple_statements          go to state 161
+    statements                 go to state 112
+    expression_statement       go to state 113
+    assignment_statment        go to state 114
+    augmented_assignment_stmt  go to state 115
+    pass_stm                   go to state 116
+    del_stmt                   go to state 117
+    return_stmt                go to state 118
+    yield_stmt                 go to state 119
+    raise_stmt                 go to state 120
+    break_stmt                 go to state 121
+    continue_stmt              go to state 122
+    import_stmt                go to state 123
+    global_stmt                go to state 124
+    nonlocal_stmt              go to state 125
+
+
+State 231
+
+   58 dictindex: dictindex KOMMA IDENTIFIER ANWKATWTELEIA . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 250
+
+
+State 232
+
+   59 comprehension: IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR . IDENTIFIER IN IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 251
+
+
+State 233
+
+   60 comprehension: IDENTIFIER PLUS IDENTIFIER FOR IDENTIFIER IN . IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 252
+
+
+State 234
+
+   62 comprehension: IDENTIFIER MUL IDENTIFIER FOR IDENTIFIER IN . IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 253
+
+
+State 235
+
+   63 comprehension: IDENTIFIER DIVISION IDENTIFIER FOR IDENTIFIER IN . IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 254
+
+
+State 236
+
+   61 comprehension: IDENTIFIER MINUS IDENTIFIER FOR IDENTIFIER IN . IDENTIFIER FOR IDENTIFIER IN IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 255
+
+
+State 237
+
+  129 parameterizedconstructor: DEF IDENTIFIER LEFTBRACKET IDENTIFIER RIGHTBRACKET . swmaconstr
+
+    IDENTIFIER  shift, and go to state 145
+
+    module      go to state 256
+    swmaconstr  go to state 257
+
+
+State 238
+
+  110 synexeia_ekfrashs: synexeia_ekfrashs . KOMMA IDENTIFIER
+  130 parameterizedconstructor: DEF IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs . RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr
+  131                         | DEF IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs . RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr object
+  132                         | DEF IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs . RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr function
+  133                         | DEF IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs . RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr object function
+
+    RIGHTBRACKET  shift, and go to state 258
+    KOMMA         shift, and go to state 219
+
+
+State 239
+
+  128 defconstructor: DEF INIT LEFTBRACKET IDENTIFIER RIGHTBRACKET . ANWKATWTELEIA swmaconstr
+
+    ANWKATWTELEIA  shift, and go to state 259
+
+
+State 240
+
+  110 synexeia_ekfrashs: synexeia_ekfrashs KOMMA IDENTIFIER .
+
+    $default  reduce using rule 110 (synexeia_ekfrashs)
+
+
+State 241
+
+   97 raise_stmt: RAISE IDENTIFIER LEFTBRACKET DOUBLEQUOTE IDENTIFIER . DOUBLEQUOTE RIGHTBRACKET FROM IDENTIFIER
+
+    DOUBLEQUOTE  shift, and go to state 260
+
+
+State 242
+
+   78 expression_statement: PRINT LEFTBRACKET DOUBLEQUOTE protash DOUBLEQUOTE . RIGHTBRACKET
+
+    RIGHTBRACKET  shift, and go to state 261
+
+
+State 243
+
+   81 protash: protash IDENTIFIER .
+
+    $default  reduce using rule 81 (protash)
+
+
+State 244
+
+  117 sygrites: ISON . ISON
+
+    ISON  shift, and go to state 262
+
+
+State 245
+
+  118 sygrites: MEGALUTERO .
+
+    $default  reduce using rule 118 (sygrites)
+
+
+State 246
+
+  119 sygrites: MIKROTERO .
+
+    $default  reduce using rule 119 (sygrites)
+
+
+State 247
+
+  120 sygrites: DIAFORO .
+
+    $default  reduce using rule 120 (sygrites)
+
+
+State 248
+
+  115 if_stm: IF IDENTIFIER sygrites . IDENTIFIER ANWKATWTELEIA expression_statement
+  116       | IF IDENTIFIER sygrites . IDENTIFIER ANWKATWTELEIA expression_statement ELIF IDENTIFIER sygrites IDENTIFIER ANWKATWTELEIA expression_statement
+
+    IDENTIFIER  shift, and go to state 263
+
+
+State 249
+
+  121 for_stm: FOR IDENTIFIER . IN IDENTIFIER ANWKATWTELEIA expression_statement
+  122        | FOR IDENTIFIER . IN IDENTIFIER ANWKATWTELEIA if_stm
+
+    IN  shift, and go to state 264
+
+
+State 250
+
+   58 dictindex: dictindex KOMMA IDENTIFIER ANWKATWTELEIA IDENTIFIER .
+
+    $default  reduce using rule 58 (dictindex)
+
+
+State 251
+
+   59 comprehension: IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER . IN IDENTIFIER
+
+    IN  shift, and go to state 265
+
+
+State 252
+
+   60 comprehension: IDENTIFIER PLUS IDENTIFIER FOR IDENTIFIER IN IDENTIFIER . FOR IDENTIFIER IN IDENTIFIER
+
+    FOR  shift, and go to state 266
+
+
+State 253
+
+   62 comprehension: IDENTIFIER MUL IDENTIFIER FOR IDENTIFIER IN IDENTIFIER . FOR IDENTIFIER IN IDENTIFIER
+
+    FOR  shift, and go to state 267
+
+
+State 254
+
+   63 comprehension: IDENTIFIER DIVISION IDENTIFIER FOR IDENTIFIER IN IDENTIFIER . FOR IDENTIFIER IN IDENTIFIER
+
+    FOR  shift, and go to state 268
+
+
+State 255
+
+   61 comprehension: IDENTIFIER MINUS IDENTIFIER FOR IDENTIFIER IN IDENTIFIER . FOR IDENTIFIER IN IDENTIFIER
+
+    FOR  shift, and go to state 269
+
+
+State 256
+
+  106 module: module . TELEIA IDENTIFIER
+  134 swmaconstr: module . ISON DOUBLEQUOTE IDENTIFIER DOUBLEQUOTE
+  135           | module . ISON IDENTIFIER
+
+    ISON    shift, and go to state 270
+    TELEIA  shift, and go to state 185
+
+
+State 257
+
+  129 parameterizedconstructor: DEF IDENTIFIER LEFTBRACKET IDENTIFIER RIGHTBRACKET swmaconstr .
+
+    $default  reduce using rule 129 (parameterizedconstructor)
+
+
+State 258
+
+  130 parameterizedconstructor: DEF IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET . ANWKATWTELEIA recursive_swmaconstr
+  131                         | DEF IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET . ANWKATWTELEIA recursive_swmaconstr object
+  132                         | DEF IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET . ANWKATWTELEIA recursive_swmaconstr function
+  133                         | DEF IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET . ANWKATWTELEIA recursive_swmaconstr object function
+
+    ANWKATWTELEIA  shift, and go to state 271
+
+
+State 259
+
+  128 defconstructor: DEF INIT LEFTBRACKET IDENTIFIER RIGHTBRACKET ANWKATWTELEIA . swmaconstr
+
+    IDENTIFIER  shift, and go to state 145
+
+    module      go to state 256
+    swmaconstr  go to state 272
+
+
+State 260
+
+   97 raise_stmt: RAISE IDENTIFIER LEFTBRACKET DOUBLEQUOTE IDENTIFIER DOUBLEQUOTE . RIGHTBRACKET FROM IDENTIFIER
+
+    RIGHTBRACKET  shift, and go to state 273
+
+
+State 261
+
+   78 expression_statement: PRINT LEFTBRACKET DOUBLEQUOTE protash DOUBLEQUOTE RIGHTBRACKET .
+
+    $default  reduce using rule 78 (expression_statement)
+
+
+State 262
+
+  117 sygrites: ISON ISON .
+
+    $default  reduce using rule 117 (sygrites)
+
+
+State 263
+
+  115 if_stm: IF IDENTIFIER sygrites IDENTIFIER . ANWKATWTELEIA expression_statement
+  116       | IF IDENTIFIER sygrites IDENTIFIER . ANWKATWTELEIA expression_statement ELIF IDENTIFIER sygrites IDENTIFIER ANWKATWTELEIA expression_statement
+
+    ANWKATWTELEIA  shift, and go to state 274
+
+
+State 264
+
+  121 for_stm: FOR IDENTIFIER IN . IDENTIFIER ANWKATWTELEIA expression_statement
+  122        | FOR IDENTIFIER IN . IDENTIFIER ANWKATWTELEIA if_stm
+
+    IDENTIFIER  shift, and go to state 275
+
+
+State 265
+
+   59 comprehension: IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 276
+
+
+State 266
+
+   60 comprehension: IDENTIFIER PLUS IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR . IDENTIFIER IN IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 277
+
+
+State 267
+
+   62 comprehension: IDENTIFIER MUL IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR . IDENTIFIER IN IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 278
+
+
+State 268
+
+   63 comprehension: IDENTIFIER DIVISION IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR . IDENTIFIER IN IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 279
+
+
+State 269
+
+   61 comprehension: IDENTIFIER MINUS IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR . IDENTIFIER IN IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 280
+
+
+State 270
+
+  134 swmaconstr: module ISON . DOUBLEQUOTE IDENTIFIER DOUBLEQUOTE
+  135           | module ISON . IDENTIFIER
+
+    DOUBLEQUOTE  shift, and go to state 281
+    IDENTIFIER   shift, and go to state 282
+
+
+State 271
+
+  130 parameterizedconstructor: DEF IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA . recursive_swmaconstr
+  131                         | DEF IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA . recursive_swmaconstr object
+  132                         | DEF IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA . recursive_swmaconstr function
+  133                         | DEF IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA . recursive_swmaconstr object function
+
+    IDENTIFIER  shift, and go to state 145
+
+    module                go to state 256
+    swmaconstr            go to state 283
+    recursive_swmaconstr  go to state 284
+
+
+State 272
+
+  128 defconstructor: DEF INIT LEFTBRACKET IDENTIFIER RIGHTBRACKET ANWKATWTELEIA swmaconstr .
+
+    $default  reduce using rule 128 (defconstructor)
+
+
+State 273
+
+   97 raise_stmt: RAISE IDENTIFIER LEFTBRACKET DOUBLEQUOTE IDENTIFIER DOUBLEQUOTE RIGHTBRACKET . FROM IDENTIFIER
+
+    FROM  shift, and go to state 285
+
+
+State 274
+
+  115 if_stm: IF IDENTIFIER sygrites IDENTIFIER ANWKATWTELEIA . expression_statement
+  116       | IF IDENTIFIER sygrites IDENTIFIER ANWKATWTELEIA . expression_statement ELIF IDENTIFIER sygrites IDENTIFIER ANWKATWTELEIA expression_statement
+
+    PRINT  shift, and go to state 110
+
+    expression_statement  go to state 286
+
+
+State 275
+
+  121 for_stm: FOR IDENTIFIER IN IDENTIFIER . ANWKATWTELEIA expression_statement
+  122        | FOR IDENTIFIER IN IDENTIFIER . ANWKATWTELEIA if_stm
+
+    ANWKATWTELEIA  shift, and go to state 287
+
+
+State 276
+
+   59 comprehension: IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER .
+
+    $default  reduce using rule 59 (comprehension)
+
+
+State 277
+
+   60 comprehension: IDENTIFIER PLUS IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER . IN IDENTIFIER
+
+    IN  shift, and go to state 288
+
+
+State 278
+
+   62 comprehension: IDENTIFIER MUL IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER . IN IDENTIFIER
+
+    IN  shift, and go to state 289
+
+
+State 279
+
+   63 comprehension: IDENTIFIER DIVISION IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER . IN IDENTIFIER
+
+    IN  shift, and go to state 290
+
+
+State 280
+
+   61 comprehension: IDENTIFIER MINUS IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER . IN IDENTIFIER
+
+    IN  shift, and go to state 291
+
+
+State 281
+
+  134 swmaconstr: module ISON DOUBLEQUOTE . IDENTIFIER DOUBLEQUOTE
+
+    IDENTIFIER  shift, and go to state 292
+
+
+State 282
+
+  135 swmaconstr: module ISON IDENTIFIER .
+
+    $default  reduce using rule 135 (swmaconstr)
+
+
+State 283
+
+  136 recursive_swmaconstr: swmaconstr .
+
+    $default  reduce using rule 136 (recursive_swmaconstr)
+
+
+State 284
+
+  130 parameterizedconstructor: DEF IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr .
+  131                         | DEF IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr . object
+  132                         | DEF IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr . function
+  133                         | DEF IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr . object function
+  137 recursive_swmaconstr: recursive_swmaconstr . swmaconstr
+
+    DEF         shift, and go to state 2
+    IDENTIFIER  shift, and go to state 293
+
+    DEF         [reduce using rule 130 (parameterizedconstructor)]
+    IDENTIFIER  [reduce using rule 130 (parameterizedconstructor)]
+    $default    reduce using rule 130 (parameterizedconstructor)
+
+    module      go to state 256
+    swmaconstr  go to state 294
+    object      go to state 295
+    function    go to state 296
+
+
+State 285
+
+   97 raise_stmt: RAISE IDENTIFIER LEFTBRACKET DOUBLEQUOTE IDENTIFIER DOUBLEQUOTE RIGHTBRACKET FROM . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 297
+
+
+State 286
+
+  115 if_stm: IF IDENTIFIER sygrites IDENTIFIER ANWKATWTELEIA expression_statement .
+  116       | IF IDENTIFIER sygrites IDENTIFIER ANWKATWTELEIA expression_statement . ELIF IDENTIFIER sygrites IDENTIFIER ANWKATWTELEIA expression_statement
+
+    ELIF  shift, and go to state 298
+
+    $default  reduce using rule 115 (if_stm)
+
+
+State 287
+
+  121 for_stm: FOR IDENTIFIER IN IDENTIFIER ANWKATWTELEIA . expression_statement
+  122        | FOR IDENTIFIER IN IDENTIFIER ANWKATWTELEIA . if_stm
+
+    IF     shift, and go to state 200
+    PRINT  shift, and go to state 110
+
+    expression_statement  go to state 299
+    if_stm                go to state 300
+
+
+State 288
+
+   60 comprehension: IDENTIFIER PLUS IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 301
+
+
+State 289
+
+   62 comprehension: IDENTIFIER MUL IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 302
+
+
+State 290
+
+   63 comprehension: IDENTIFIER DIVISION IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 303
+
+
+State 291
+
+   61 comprehension: IDENTIFIER MINUS IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN . IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 304
+
+
+State 292
+
+  134 swmaconstr: module ISON DOUBLEQUOTE IDENTIFIER . DOUBLEQUOTE
+
+    DOUBLEQUOTE  shift, and go to state 305
+
+
+State 293
+
+  104 module: IDENTIFIER .
+  105       | IDENTIFIER . TELEIA IDENTIFIER
+  138 object: IDENTIFIER . ISON IDENTIFIER LEFTBRACKET IDENTIFIER RIGHTBRACKET
+  139       | IDENTIFIER . ISON IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET
+
+    ISON    shift, and go to state 306
+    TELEIA  shift, and go to state 183
+
+    ISON    [reduce using rule 104 (module)]
+    TELEIA  [reduce using rule 104 (module)]
+
+
+State 294
+
+  137 recursive_swmaconstr: recursive_swmaconstr swmaconstr .
+
+    $default  reduce using rule 137 (recursive_swmaconstr)
+
+
+State 295
+
+  131 parameterizedconstructor: DEF IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr object .
+  133                         | DEF IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr object . function
+
+    DEF  shift, and go to state 2
+
+    DEF       [reduce using rule 131 (parameterizedconstructor)]
+    $default  reduce using rule 131 (parameterizedconstructor)
+
+    function  go to state 307
+
+
+State 296
+
+  132 parameterizedconstructor: DEF IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr function .
+
+    $default  reduce using rule 132 (parameterizedconstructor)
+
+
+State 297
+
+   97 raise_stmt: RAISE IDENTIFIER LEFTBRACKET DOUBLEQUOTE IDENTIFIER DOUBLEQUOTE RIGHTBRACKET FROM IDENTIFIER .
+
+    $default  reduce using rule 97 (raise_stmt)
+
+
+State 298
+
+  116 if_stm: IF IDENTIFIER sygrites IDENTIFIER ANWKATWTELEIA expression_statement ELIF . IDENTIFIER sygrites IDENTIFIER ANWKATWTELEIA expression_statement
+
+    IDENTIFIER  shift, and go to state 308
+
+
+State 299
+
+  121 for_stm: FOR IDENTIFIER IN IDENTIFIER ANWKATWTELEIA expression_statement .
+
+    $default  reduce using rule 121 (for_stm)
+
+
+State 300
+
+  122 for_stm: FOR IDENTIFIER IN IDENTIFIER ANWKATWTELEIA if_stm .
+
+    $default  reduce using rule 122 (for_stm)
+
+
+State 301
+
+   60 comprehension: IDENTIFIER PLUS IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER .
+
+    $default  reduce using rule 60 (comprehension)
+
+
+State 302
+
+   62 comprehension: IDENTIFIER MUL IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER .
+
+    $default  reduce using rule 62 (comprehension)
+
+
+State 303
+
+   63 comprehension: IDENTIFIER DIVISION IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER .
+
+    $default  reduce using rule 63 (comprehension)
+
+
+State 304
+
+   61 comprehension: IDENTIFIER MINUS IDENTIFIER FOR IDENTIFIER IN IDENTIFIER FOR IDENTIFIER IN IDENTIFIER .
+
+    $default  reduce using rule 61 (comprehension)
+
+
+State 305
+
+  134 swmaconstr: module ISON DOUBLEQUOTE IDENTIFIER DOUBLEQUOTE .
+
+    $default  reduce using rule 134 (swmaconstr)
+
+
+State 306
+
+  138 object: IDENTIFIER ISON . IDENTIFIER LEFTBRACKET IDENTIFIER RIGHTBRACKET
+  139       | IDENTIFIER ISON . IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET
+
+    IDENTIFIER  shift, and go to state 309
+
+
+State 307
+
+  133 parameterizedconstructor: DEF IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET ANWKATWTELEIA recursive_swmaconstr object function .
+
+    $default  reduce using rule 133 (parameterizedconstructor)
+
+
+State 308
+
+  116 if_stm: IF IDENTIFIER sygrites IDENTIFIER ANWKATWTELEIA expression_statement ELIF IDENTIFIER . sygrites IDENTIFIER ANWKATWTELEIA expression_statement
+
+    ISON        shift, and go to state 244
+    MEGALUTERO  shift, and go to state 245
+    MIKROTERO   shift, and go to state 246
+    DIAFORO     shift, and go to state 247
+
+    sygrites  go to state 310
+
+
+State 309
+
+  138 object: IDENTIFIER ISON IDENTIFIER . LEFTBRACKET IDENTIFIER RIGHTBRACKET
+  139       | IDENTIFIER ISON IDENTIFIER . LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET
+
+    LEFTBRACKET  shift, and go to state 311
+
+
+State 310
+
+  116 if_stm: IF IDENTIFIER sygrites IDENTIFIER ANWKATWTELEIA expression_statement ELIF IDENTIFIER sygrites . IDENTIFIER ANWKATWTELEIA expression_statement
+
+    IDENTIFIER  shift, and go to state 312
+
+
+State 311
+
+  138 object: IDENTIFIER ISON IDENTIFIER LEFTBRACKET . IDENTIFIER RIGHTBRACKET
+  139       | IDENTIFIER ISON IDENTIFIER LEFTBRACKET . IDENTIFIER synexeia_ekfrashs RIGHTBRACKET
+
+    IDENTIFIER  shift, and go to state 313
+
+
+State 312
+
+  116 if_stm: IF IDENTIFIER sygrites IDENTIFIER ANWKATWTELEIA expression_statement ELIF IDENTIFIER sygrites IDENTIFIER . ANWKATWTELEIA expression_statement
+
+    ANWKATWTELEIA  shift, and go to state 314
+
+
+State 313
+
+  138 object: IDENTIFIER ISON IDENTIFIER LEFTBRACKET IDENTIFIER . RIGHTBRACKET
+  139       | IDENTIFIER ISON IDENTIFIER LEFTBRACKET IDENTIFIER . synexeia_ekfrashs RIGHTBRACKET
+
+    RIGHTBRACKET  shift, and go to state 315
+    KOMMA         shift, and go to state 186
+
+    synexeia_ekfrashs  go to state 316
+
+
+State 314
+
+  116 if_stm: IF IDENTIFIER sygrites IDENTIFIER ANWKATWTELEIA expression_statement ELIF IDENTIFIER sygrites IDENTIFIER ANWKATWTELEIA . expression_statement
+
+    PRINT  shift, and go to state 110
+
+    expression_statement  go to state 317
+
+
+State 315
+
+  138 object: IDENTIFIER ISON IDENTIFIER LEFTBRACKET IDENTIFIER RIGHTBRACKET .
+
+    $default  reduce using rule 138 (object)
+
+
+State 316
+
+  110 synexeia_ekfrashs: synexeia_ekfrashs . KOMMA IDENTIFIER
+  139 object: IDENTIFIER ISON IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs . RIGHTBRACKET
+
+    RIGHTBRACKET  shift, and go to state 318
+    KOMMA         shift, and go to state 219
+
+
+State 317
+
+  116 if_stm: IF IDENTIFIER sygrites IDENTIFIER ANWKATWTELEIA expression_statement ELIF IDENTIFIER sygrites IDENTIFIER ANWKATWTELEIA expression_statement .
+
+    $default  reduce using rule 116 (if_stm)
+
+
+State 318
+
+  139 object: IDENTIFIER ISON IDENTIFIER LEFTBRACKET IDENTIFIER synexeia_ekfrashs RIGHTBRACKET .
+
+    $default  reduce using rule 139 (object)
