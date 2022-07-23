@@ -1,0 +1,28 @@
+programm
+u shortstring
+r longstring
+5.0
+5i
+( )
+( sas )
+( x for y in w for a in k )
+
+[ ]
+[ sdadadsd ]
+[ x + y for y in w for a in k ]
+{ }
+{ ADSDASD }
+{ x + a for y in w for a in k }
+dict = { ford : mustang , ferrari : enzo , ned : stark , thor : legacy , imagine : stars }
+#randomsxolia
+
+class  ceid:
+klmn = 5 
+def adfd ( self , a , s ) : 
+self . first = a 
+self . second = s
+p1 = Person ( John , 36 )
+def myfunction ( fname ) :
+print ( " sasa " )
+if b > a : print ( " b  greater than a " )
+for x in fruits: if b > a : print ( " b  greater than a " )
